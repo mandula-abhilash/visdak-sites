@@ -3,7 +3,11 @@ const businesses = {
     name: "Kiran's Beauty Salon",
     niche: "salon",
     template: "template1",
-    theme: "lavender",
+    theme: {
+      primary: "#FF5BA3",
+      secondary: "#333333",
+      accent: "#9D4EDD",
+    },
     description:
       "Premier hair and beauty salon offering a range of luxury services.",
     logo: "scissors",
@@ -43,7 +47,11 @@ const businesses = {
     name: "Ram's Emergency Plumbing",
     niche: "plumber",
     template: "template2",
-    theme: "blue",
+    theme: {
+      primary: "#1E88E5",
+      secondary: "#0D47A1",
+      accent: "#42A5F5",
+    },
     description: "24/7 emergency plumbing services you can trust.",
     logo: "wrench",
     contact: {

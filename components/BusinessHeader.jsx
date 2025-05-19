@@ -11,24 +11,23 @@ export default function BusinessHeader({ business }) {
   const LogoIcon = () => {
     switch (business.logo) {
       case "scissors":
-        return <Scissors size={28} />;
+        return <Scissors className="text-white" size={28} />;
       case "laptop":
-        return <Laptop size={28} />;
+        return <Laptop className="text-white" size={28} />;
       case "wrench":
-        return <Wrench size={28} />;
+        return <Wrench className="text-white" size={28} />;
       default:
-        return <CircleUser size={28} />;
+        return <CircleUser className="text-white" size={28} />;
     }
   };
 
   return (
-    <header className="relative">
+    <header className="fixed top-0 left-0 right-0 z-50">
       {/* Navigation Bar */}
       <div
-        className="fixed w-full z-50 px-4 md:px-6 py-4"
+        className="w-full px-4 md:px-6 py-4"
         style={{
-          backgroundColor: `${business.theme.primary}`,
-          color: "var(--business-primary-text, #FFFFFF)",
+          backgroundColor: business.theme.primary,
         }}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -44,9 +43,8 @@ export default function BusinessHeader({ business }) {
           <nav className="hidden md:flex space-x-8 items-center">
             <NavLinks />
             <button
-              className="px-4 py-2 rounded-md font-medium"
+              className="px-4 py-2 rounded-md font-medium bg-white hover:bg-white/90 transition-colors"
               style={{
-                backgroundColor: "var(--business-primary-text, #FFFFFF)",
                 color: business.theme.primary,
               }}
             >
@@ -72,16 +70,14 @@ export default function BusinessHeader({ business }) {
         )}
         style={{
           backgroundColor: business.theme.primary,
-          color: "var(--business-primary-text, #FFFFFF)",
           top: "64px", // Height of the header
         }}
       >
         <div className="flex flex-col p-8 space-y-8 text-lg">
           <NavLinks mobile onClick={() => setIsMenuOpen(false)} />
           <button
-            className="px-4 py-2 rounded-md font-medium w-full"
+            className="px-4 py-2 rounded-md font-medium w-full bg-white hover:bg-white/90 transition-colors"
             style={{
-              backgroundColor: "var(--business-primary-text, #FFFFFF)",
               color: business.theme.primary,
             }}
             onClick={() => setIsMenuOpen(false)}
@@ -112,7 +108,7 @@ function NavLinks({ mobile = false, onClick = () => {} }) {
           key={link.name}
           href={link.href}
           className={cn(
-            "font-medium hover:opacity-80 transition-opacity",
+            "font-medium text-white hover:text-white/80 transition-opacity",
             mobile && "block py-2"
           )}
           onClick={onClick}
