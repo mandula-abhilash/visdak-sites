@@ -1,0 +1,161 @@
+{
+  "salon": {
+    "name": "Lavanya Salon",
+    "description": "Premier hair and beauty salon offering a range of services to make you look and feel your best.",
+    "theme": {
+      "primary": "#FF5BA3",
+      "secondary": "#333333",
+      "accent": "#9D4EDD"
+    },
+    "logo": "scissors",
+    "contact": {
+      "phone": "+1 (555) 123-4567",
+      "email": "info@lavanyasalon.com",
+      "address": "123 Beauty Lane, Stylesville, CA 94123"
+    },
+    "services": [
+      {
+        "id": 1,
+        "name": "Haircut & Styling",
+        "description": "Professional haircut and styling tailored to your preferences and hair type.",
+        "price": "$45+"
+      },
+      {
+        "id": 2,
+        "name": "Color Treatment",
+        "description": "Full color, highlights, balayage, or specialized color treatments.",
+        "price": "$85+"
+      },
+      {
+        "id": 3,
+        "name": "Facial Treatments",
+        "description": "Rejuvenating facials customized for your skin type and concerns.",
+        "price": "$65+"
+      },
+      {
+        "id": 4,
+        "name": "Manicure & Pedicure",
+        "description": "Nail care and polish application for hands and feet.",
+        "price": "$35+"
+      }
+    ],
+    "testimonials": [
+      {
+        "id": 1,
+        "name": "Sarah J.",
+        "text": "Lavanya Salon transformed my look completely! Their stylists are true artists."
+      },
+      {
+        "id": 2,
+        "name": "Michael T.",
+        "text": "Best haircut I've ever had. The staff is professional and the ambiance is perfect."
+      }
+    ]
+  },
+  "ramplumber": {
+    "name": "Ram the Plumber",
+    "description": "Professional plumbing services for residential and commercial properties. Available 24/7 for emergencies.",
+    "theme": {
+      "primary": "#1E88E5",
+      "secondary": "#0D47A1",
+      "accent": "#42A5F5"
+    },
+    "logo": "wrench",
+    "contact": {
+      "phone": "+1 (555) 987-6543",
+      "email": "help@ramplumber.com",
+      "address": "456 Pipe Street, Fixitville, CA 94456"
+    },
+    "services": [
+      {
+        "id": 1,
+        "name": "Emergency Repairs",
+        "description": "24/7 emergency plumbing repairs for leaks, bursts, and blockages.",
+        "price": "$85+"
+      },
+      {
+        "id": 2,
+        "name": "Bathroom Installation",
+        "description": "Complete bathroom installation and renovation services.",
+        "price": "$1200+"
+      },
+      {
+        "id": 3,
+        "name": "Drain Cleaning",
+        "description": "Professional drain cleaning and unclogging services.",
+        "price": "$75+"
+      },
+      {
+        "id": 4,
+        "name": "Water Heater Service",
+        "description": "Installation, repair, and maintenance of water heaters.",
+        "price": "$95+"
+      }
+    ],
+    "testimonials": [
+      {
+        "id": 1,
+        "name": "Jennifer K.",
+        "text": "Ram fixed our emergency leak at 2 AM! Fast, professional, and reasonably priced."
+      },
+      {
+        "id": 2,
+        "name": "David L.",
+        "text": "Excellent service. Ram installed our new bathroom fixtures perfectly and on budget."
+      }
+    ]
+  },
+  "techhub": {
+    "name": "TechHub Solutions",
+    "description": "Your one-stop shop for IT services, computer repair, and technical support.",
+    "theme": {
+      "primary": "#6200EA",
+      "secondary": "#3700B3",
+      "accent": "#BB86FC"
+    },
+    "logo": "laptop",
+    "contact": {
+      "phone": "+1 (555) 456-7890",
+      "email": "support@techhubsolutions.com",
+      "address": "789 Circuit Avenue, Digiville, CA 94789"
+    },
+    "services": [
+      {
+        "id": 1,
+        "name": "Computer Repair",
+        "description": "Diagnosis and repair of hardware and software issues for all devices.",
+        "price": "$65+"
+      },
+      {
+        "id": 2,
+        "name": "Network Setup",
+        "description": "Home and office network installation and configuration.",
+        "price": "$120+"
+      },
+      {
+        "id": 3,
+        "name": "Data Recovery",
+        "description": "Recovery of lost or corrupted data from various storage devices.",
+        "price": "$150+"
+      },
+      {
+        "id": 4,
+        "name": "IT Consultation",
+        "description": "Professional IT advice for businesses and individuals.",
+        "price": "$90/hour"
+      }
+    ],
+    "testimonials": [
+      {
+        "id": 1,
+        "name": "Robert J.",
+        "text": "TechHub recovered all my important files when I thought they were lost forever. Lifesavers!"
+      },
+      {
+        "id": 2,
+        "name": "Amanda P.",
+        "text": "Great service setting up our office network. Everything runs smoothly now."
+      }
+    ]
+  }
+}
