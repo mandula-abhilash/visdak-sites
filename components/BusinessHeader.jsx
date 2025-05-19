@@ -34,7 +34,7 @@ export default function BusinessHeader({ business }) {
           {/* Logo and Business Name */}
           <div className="flex items-center space-x-3">
             <LogoIcon />
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight">
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white">
               {business.name}
             </h1>
           </div>

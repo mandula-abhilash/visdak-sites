@@ -1,13 +1,12 @@
+import { getTheme } from "./themes";
+
 const businesses = {
   kiransalon: {
     name: "Kiran's Beauty Salon",
     niche: "salon",
     template: "template1",
-    theme: {
-      primary: "#FF5BA3",
-      secondary: "#333333",
-      accent: "#9D4EDD",
-    },
+    themeName: "carbon",
+    theme: getTheme("carbon"),
     description:
       "Premier hair and beauty salon offering a range of luxury services.",
     logo: "scissors",
@@ -67,11 +66,8 @@ const businesses = {
     name: "Ram's Emergency Plumbing",
     niche: "plumber",
     template: "template2",
-    theme: {
-      primary: "#1E88E5",
-      secondary: "#0D47A1",
-      accent: "#42A5F5",
-    },
+    themeName: "azure", // Using predefined theme
+    theme: getTheme("azure"), // Theme colors will be populated from themes.js
     description: "24/7 emergency plumbing services you can trust.",
     logo: "wrench",
     seo: {
@@ -129,7 +125,12 @@ const businesses = {
 };
 
 export function getBusinessBySubdomain(subdomain) {
-  return businesses[subdomain] || null;
+  const business = businesses[subdomain];
+  if (business) {
+    // Ensure theme is always up to date from themes configuration
+    business.theme = getTheme(business.themeName);
+  }
+  return business || null;
 }
 
 export function getAllBusinesses() {
