@@ -1,35 +1,25 @@
-import { getBusinessBySubdomain } from "@/lib/data";
-import BusinessThemeProvider from "@/components/BusinessThemeProvider";
-import BusinessHeader from "@/components/BusinessHeader";
-import HeroSection from "@/components/HeroSection";
-import ServiceSection from "@/components/ServiceSection";
-import TestimonialSection from "@/components/TestimonialSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import { getBusinessBySubdomain } from "@/config/businesses";
 import { notFound } from "next/navigation";
 
 export default async function Page({ searchParams }) {
-  // Get subdomain from URL params (set by middleware)
   const subdomain = searchParams.subdomain;
+  const business = getBusinessBySubdomain(subdomain);
 
-  // Fetch business data based on subdomain
-  const business = await getBusinessBySubdomain(subdomain);
-
-  // If business not found, show 404 page
+  // If no business found, show 404
   if (!business) {
     return notFound();
   }
 
-  return (
-    <BusinessThemeProvider business={business}>
-      <main className="min-h-screen">
-        <BusinessHeader business={business} />
-        <HeroSection business={business} />
-        <ServiceSection business={business} />
-        <TestimonialSection business={business} />
-        <ContactSection business={business} />
-        <Footer business={business} />
-      </main>
-    </BusinessThemeProvider>
-  );
+  try {
+    // Dynamically import the template based on niche and template name
+    const Template = (
+      await import(
+        `@/app/templates/${business.niche}/${business.template}/index.js`
+      )
+    ).default;
+    return <Template business={business} />;
+  } catch (error) {
+    console.error("Template not found:", error);
+    return notFound();
+  }
 }
