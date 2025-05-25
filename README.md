@@ -1,108 +1,190 @@
-# Multi-tenant SaaS with Next.js and Subdomain Routing
+# VISDAK Website Builder — Multi-Tenant SaaS with Next.js + Subdomain Routing
 
-This project is a Next.js 14 application that supports multi-tenant websites using subdomain routing. It allows you to host multiple business websites under a single codebase, with each business having its own subdomain.
+This is a production-grade, modular **Next.js 14** platform that allows you to build and serve multiple small business websites dynamically using **subdomain-based routing**, **section-based rendering**, and customizable **layouts/themes**. It is optimized for scalability, editability, and high performance.
 
-## Features
+---
 
-- **Subdomain-based routing**: Each business gets its own unique subdomain
-- **Dynamic styling**: Businesses have custom theme colors and branding
-- **Responsive design**: Fully responsive on all devices
-- **Mock database**: Sample business data stored in JSON format
-- **Contact form**: Lead generation for each business
-- **Dynamic components**: Header, services, testimonials, and more
+## 🔥 Key Features
 
-## Getting Started
+- **⚙ Multi-tenant setup** — Each business is served under a unique subdomain (e.g., `lavanyasalon.visdak.site`)
+- **🎨 Template-driven architecture** — Websites are built using reusable section components configured via JSON/DB
+- **🧱 Modular section library** — Organized by categories like Hero, Services, Testimonials, Pricing, Contact, etc.
+- **🖼️ Dynamic layouts** — Layouts like Parallax, Stacked, Grid, SplitScreen available and switchable per site
+- **📝 Editable Mode for Admins** — Site owners can toggle edit mode to customize content (inline or panel-based)
+- **🌍 Global context and theming** — All layouts share providers for theme, site config, analytics, maps, etc.
+- **🛠️ Flexible deployment** — Supports custom VPS with wildcard Nginx setup
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18.17 or later
-- npm or yarn
+- Node.js `18.17+`
+- PostgreSQL (for dynamic config storage)
+- npm
 
 ### Installation
 
-1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/multi-tenant-nextjs.git
-cd multi-tenant-nextjs
-```
-
-2. Install dependencies
-```bash
+git clone https://github.com/mandula-abhilash/visdak-sites
+cd visdak-sites
 npm install
-# or
-yarn install
-```
-
-3. Run the development server
-```bash
 npm run dev
-# or
-yarn dev
 ```
 
-## Local Development
+### Local Subdomain Testing
 
-To test subdomains locally, you need to modify your hosts file to point subdomains to your localhost:
+Add entries to your `hosts` file:
 
-1. Edit your hosts file (`/etc/hosts` on Linux/Mac, `C:\Windows\System32\drivers\etc\hosts` on Windows)
-2. Add entries for your test subdomains:
-```
-127.0.0.1 salon.localhost
-127.0.0.1 ramplumber.localhost  
-127.0.0.1 techhub.localhost
+```txt
+127.0.0.1 lavanyasalon.localhost
+127.0.0.1 ramplumber.localhost
+127.0.0.1 fashionhub.localhost
 ```
 
-3. Access your site at `http://salon.localhost:3000`, `http://ramplumber.localhost:3000`, etc.
+Visit in browser:
 
-## Deployment
+```
+http://lavanyasalon.localhost:3000
+```
 
-### Deploying to Vercel
+---
 
-This project is configured for deployment on Vercel with wildcard domains. To deploy:
+## 🧩 Folder Structure (Key)
 
-1. Push your code to a Git repository
-2. Import to Vercel
-3. Add your primary domain (e.g., `yourdomain.com`) in the Vercel dashboard
-4. Configure wildcard DNS with your domain provider:
-   - Add a wildcard CNAME record: `*.yourdomain.com` pointing to `cname.vercel-dns.com`
+```
+/components
+  /layouts
+    ParallaxLayout.jsx
+    StackedLayout.jsx
+    ...
+  /sections
+    /Hero/HeroBasic.jsx
+    /Hero/HeroSplitImage.jsx
+    /Services/ServicesGrid.jsx
+    /Testimonials/TestimonialsCarousel.jsx
+    ...
 
-### Alternative Deployment (VPS)
+/contexts
+  EditModeContext.jsx
+  SiteContext.jsx
 
-To deploy on a VPS:
+/lib
+  layoutMap.js
+  sectionMap.js
+  api.js
 
-1. Build the application:
+/pages
+  /[site]/page.jsx (site renderer)
+
+app/layout.jsx (global providers, theme, analytics, etc.)
+```
+
+---
+
+## 🛠 Configuration Example
+
+Each business site is rendered using a layout + ordered sections defined in the DB (or JSON file):
+
+```json
+{
+  "layout": "ParallaxLayout",
+  "sections": [
+    {
+      "component": "HeroSplitImage",
+      "props": {
+        "title": "Lavanya Salon",
+        "subtitle": "Glow with Confidence",
+        "image": "/images/hero.jpg"
+      }
+    },
+    {
+      "component": "ServicesGrid",
+      "props": {
+        "services": ["Facials", "Hair Spa", "Bridal Makeup"]
+      }
+    },
+    {
+      "component": "ContactForm",
+      "props": {
+        "phone": "+91-9876543210",
+        "email": "contact@lavanyasalon.com"
+      }
+    }
+  ]
+}
+```
+
+---
+
+## 🌐 Deployment
+
+### VPS + Nginx
+
+1. Build:
+
 ```bash
 npm run build
 ```
 
-2. Configure your web server (Nginx, Apache) with wildcard subdomain support
-3. Set up a wildcard SSL certificate (Let's Encrypt supports this)
+2. Configure Nginx for wildcard subdomain proxying
+3. Use Let's Encrypt wildcard SSL (via DNS challenge)
 
-## Adding New Business Tenants
+---
 
-To add a new business tenant:
+## 🔓 Admin Mode & Editing
 
-1. Add a new entry to the `businesses.json` file
-2. Follow the existing schema with:
-   - Business name
-   - Description
-   - Theme colors
-   - Logo type
-   - Contact information
-   - Services
-   - Testimonials
+- Toggle between `"view"` and `"edit"` using `EditModeContext`
+- In edit mode:
 
-## Roadmap
+  - Sections show `Edit` buttons or use `EditableText`, `EditableImage`, etc.
+  - Edits are saved via `PATCH /api/sites/:id/sections/:index`
 
-Future enhancements may include:
+- Only site owner (verified via JWT or session) can access edit mode
 
-- Database integration (PostgreSQL, MongoDB, etc.)
-- Admin dashboard for businesses
-- Authentication system
-- Custom domain support (beyond subdomains)
-- Business-specific content management
-- Analytics per tenant
+---
 
-## License
+## 🔧 Roadmap (Phased Development)
 
-This project is licensed under the MIT License - see the LICENSE file for details
+### ✅ Phase 1: Core Engine
+
+- Subdomain-based site renderer
+- Layout & section config via DB
+
+### ✅ Phase 2: Layouts & Section Library
+
+- Build 8–12 core sections (Hero, Services, Contact, Pricing, etc.)
+- Organize by categories
+
+### ✅ Phase 3: Admin Mode & Editable UI
+
+- Inline editing support
+- Context-based mode switching
+
+### ✅ Phase 4: Global Providers
+
+- Theme, SiteContext, Google Analytics, Maps, Toasts
+
+### 🔜 Phase 5: Visual Admin Builder
+
+- Drag/drop section editor
+- Live preview and versioning
+
+### 🔜 Phase 6: Performance & SEO
+
+- Static optimization
+- Redis cache layer
+- OG metadata and social tags
+
+---
+
+## 📁 Adding a New Business Site
+
+1. Add a new entry to the DB (or `businesses.json`)
+2. Include:
+
+   - Subdomain
+   - Layout name
+   - Section components and props
+   - Theme palette
