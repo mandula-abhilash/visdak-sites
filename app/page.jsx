@@ -1,5 +1,6 @@
 import { getBusinessBySubdomain } from "@/config/businesses";
 import { getLayout } from "@/lib/layout-map";
+import { getSection } from "@/lib/section-map";
 import { notFound } from "next/navigation";
 
 export default async function Page({ searchParams }) {
@@ -18,12 +19,7 @@ export default async function Page({ searchParams }) {
     // Get the layout component
     const Layout = getLayout(business.layout || "stacked");
 
-    // Dynamically import the template based on niche and template name
-    const Template = (
-      await import(
-        `@/app/templates/${business.niche}/${business.template}/index.js`
-      )
-    ).default;
+    // Get Head component
     const Head = (
       await import(
         `@/app/templates/${business.niche}/${business.template}/head.js`
@@ -33,7 +29,12 @@ export default async function Page({ searchParams }) {
     return (
       <Layout business={business}>
         <Head business={business} pathname={searchParams.pathname || "home"} />
-        <Template business={business} />
+        {business.sections?.map((section) => {
+          const SectionComponent = getSection(section.type);
+          return SectionComponent ? (
+            <SectionComponent key={section.id} {...section.props} />
+          ) : null;
+        })}
       </Layout>
     );
   } catch (error) {
