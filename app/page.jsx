@@ -1,4 +1,5 @@
 import { getBusinessBySubdomain } from "@/config/businesses";
+import { getLayout } from "@/lib/layout-map";
 import { notFound } from "next/navigation";
 
 export default async function Page({ searchParams }) {
@@ -14,6 +15,9 @@ export default async function Page({ searchParams }) {
     // Add subdomain to business object for canonical URLs
     business.subdomain = subdomain;
 
+    // Get the layout component
+    const Layout = getLayout(business.layout || "stacked");
+
     // Dynamically import the template based on niche and template name
     const Template = (
       await import(
@@ -27,10 +31,10 @@ export default async function Page({ searchParams }) {
     ).default;
 
     return (
-      <>
+      <Layout business={business}>
         <Head business={business} pathname={searchParams.pathname || "home"} />
         <Template business={business} />
-      </>
+      </Layout>
     );
   } catch (error) {
     console.error("Template not found:", error);

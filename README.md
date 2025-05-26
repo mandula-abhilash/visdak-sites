@@ -38,7 +38,7 @@ npm run dev
 Add entries to your `hosts` file:
 
 ```txt
-127.0.0.1 lavanyasalon.localhost
+127.0.0.1 kiransalon.localhost
 127.0.0.1 ramplumber.localhost
 127.0.0.1 fashionhub.localhost
 ```
@@ -46,7 +46,7 @@ Add entries to your `hosts` file:
 Visit in browser:
 
 ```
-http://lavanyasalon.localhost:3000
+http://kiransalon.localhost:3000
 ```
 
 ---
