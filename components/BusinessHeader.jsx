@@ -1,11 +1,22 @@
 "use client";
 
-import { CircleUser, Menu, Scissors, Laptop, Wrench, X } from "lucide-react";
+import {
+  CircleUser,
+  Menu,
+  Scissors,
+  Laptop,
+  Wrench,
+  X,
+  Moon,
+  Sun,
+} from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 export default function BusinessHeader({ business }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   // Map the logo string to the correct Lucide icon
   const LogoIcon = () => {
@@ -40,7 +51,7 @@ export default function BusinessHeader({ business }) {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 items-center">
+          <nav className="hidden md:flex items-center space-x-8">
             <NavLinks />
             <button
               className="px-4 py-2 rounded-md font-medium bg-white hover:bg-white/90 transition-colors"
@@ -50,15 +61,29 @@ export default function BusinessHeader({ business }) {
             >
               Contact Us
             </button>
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center space-x-2">
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              className="text-white p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
