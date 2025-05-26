@@ -39,7 +39,7 @@ const businesses = {
     sections: [
       {
         id: "hero",
-        type: "hero",
+        type: "hero.split-with-image",
         props: {
           title: "Welcome to Kiran's Beauty Salon",
           subtitle: "Where Beauty Meets Excellence",
@@ -59,7 +59,7 @@ const businesses = {
       },
       {
         id: "services",
-        type: "services",
+        type: "services.grid",
         props: {
           title: "Our Services",
           description: "Discover our range of professional beauty services",
@@ -83,7 +83,7 @@ const businesses = {
       },
       {
         id: "testimonials",
-        type: "testimonials",
+        type: "testimonials.grid",
         props: {
           title: "Client Testimonials",
           description: "What our clients say about us",
@@ -166,7 +166,7 @@ const businesses = {
     sections: [
       {
         id: "hero",
-        type: "hero",
+        type: "hero.with-background",
         props: {
           title: "24/7 Emergency Plumbing Services",
           subtitle: "Fast Response, Expert Solutions",
@@ -186,7 +186,7 @@ const businesses = {
       },
       {
         id: "services",
-        type: "services",
+        type: "services.grid",
         props: {
           title: "Professional Services",
           description: "Expert plumbing solutions for your home and business",
@@ -208,7 +208,7 @@ const businesses = {
       },
       {
         id: "testimonials",
-        type: "testimonials",
+        type: "testimonials.grid",
         props: {
           title: "Customer Reviews",
           description: "What our customers say about our service",
@@ -259,7 +259,6 @@ const businesses = {
 export function getBusinessBySubdomain(subdomain) {
   const business = businesses[subdomain];
   if (business) {
-    // Ensure theme is always up to date from themes configuration
     business.theme = getTheme(business.themeName);
   }
   return business || null;
