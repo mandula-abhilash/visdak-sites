@@ -5,6 +5,7 @@ const businesses = {
     name: "Kiran's Beauty Salon",
     niche: "salon",
     template: "template1",
+    layout: "parallax",
     themeName: "carbon",
     theme: getTheme("carbon"),
     description:
@@ -35,6 +36,72 @@ const businesses = {
       email: "info@kiransalon.com",
       address: "123 Style Street, Beauty Hills, CA 94123",
     },
+    sections: [
+      {
+        id: "hero",
+        type: "hero",
+        props: {
+          title: "Welcome to Kiran's Beauty Salon",
+          subtitle: "Where Beauty Meets Excellence",
+          image:
+            "https://images.pexels.com/photos/3992874/pexels-photo-3992874.jpeg",
+          cta: {
+            primary: {
+              text: "Book Now",
+              href: "#contact",
+            },
+            secondary: {
+              text: "Our Services",
+              href: "#services",
+            },
+          },
+        },
+      },
+      {
+        id: "services",
+        type: "services",
+        props: {
+          title: "Our Services",
+          description: "Discover our range of professional beauty services",
+          services: [
+            {
+              id: 1,
+              name: "Luxury Haircut & Styling",
+              description:
+                "Personalized haircut and styling with premium products.",
+              price: "$65+",
+            },
+            {
+              id: 2,
+              name: "Premium Color Treatment",
+              description:
+                "Expert color services including balayage and highlights.",
+              price: "$95+",
+            },
+          ],
+        },
+      },
+      {
+        id: "testimonials",
+        type: "testimonials",
+        props: {
+          title: "Client Testimonials",
+          description: "What our clients say about us",
+          testimonials: [
+            {
+              id: 1,
+              name: "Emily R.",
+              text: "The best salon experience I've ever had. Kiran is a true artist!",
+            },
+            {
+              id: 2,
+              name: "Sophie L.",
+              text: "Love my new look! The attention to detail is outstanding.",
+            },
+          ],
+        },
+      },
+    ],
     services: [
       {
         id: 1,
@@ -66,8 +133,9 @@ const businesses = {
     name: "Ram's Emergency Plumbing",
     niche: "plumber",
     template: "template2",
-    themeName: "azure", // Using predefined theme
-    theme: getTheme("azure"), // Theme colors will be populated from themes.js
+    layout: "stacked",
+    themeName: "azure",
+    theme: getTheme("azure"),
     description: "24/7 emergency plumbing services you can trust.",
     logo: "wrench",
     seo: {
@@ -95,6 +163,70 @@ const businesses = {
       email: "emergency@ramplumber.com",
       address: "456 Pipeline Road, Fixitville, CA 94456",
     },
+    sections: [
+      {
+        id: "hero",
+        type: "hero",
+        props: {
+          title: "24/7 Emergency Plumbing Services",
+          subtitle: "Fast Response, Expert Solutions",
+          image:
+            "https://images.pexels.com/photos/8486972/pexels-photo-8486972.jpeg",
+          cta: {
+            primary: {
+              text: "Call Now",
+              href: "#contact",
+            },
+            secondary: {
+              text: "Our Services",
+              href: "#services",
+            },
+          },
+        },
+      },
+      {
+        id: "services",
+        type: "services",
+        props: {
+          title: "Professional Services",
+          description: "Expert plumbing solutions for your home and business",
+          services: [
+            {
+              id: 1,
+              name: "Emergency Repairs",
+              description: "Available 24/7 for urgent plumbing emergencies.",
+              price: "$95+",
+            },
+            {
+              id: 2,
+              name: "Pipe Installation",
+              description: "Professional pipe installation and replacement.",
+              price: "$150+",
+            },
+          ],
+        },
+      },
+      {
+        id: "testimonials",
+        type: "testimonials",
+        props: {
+          title: "Customer Reviews",
+          description: "What our customers say about our service",
+          testimonials: [
+            {
+              id: 1,
+              name: "Mark T.",
+              text: "Ram saved us from a major flood at 2 AM. True professional!",
+            },
+            {
+              id: 2,
+              name: "Linda K.",
+              text: "Fair prices and excellent workmanship. Highly recommended!",
+            },
+          ],
+        },
+      },
+    ],
     services: [
       {
         id: 1,
