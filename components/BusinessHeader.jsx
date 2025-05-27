@@ -1,36 +1,19 @@
 "use client";
 
-import {
-  CircleUser,
-  Menu,
-  Scissors,
-  Laptop,
-  Wrench,
-  X,
-  Moon,
-  Sun,
-} from "lucide-react";
-import { useState } from "react";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
 export default function BusinessHeader({ business }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  // Map the logo string to the correct Lucide icon
-  const LogoIcon = () => {
-    switch (business.logo) {
-      case "scissors":
-        return <Scissors className="text-white" size={28} />;
-      case "laptop":
-        return <Laptop className="text-white" size={28} />;
-      case "wrench":
-        return <Wrench className="text-white" size={28} />;
-      default:
-        return <CircleUser className="text-white" size={28} />;
-    }
-  };
+  // Ensure component is mounted before rendering theme-dependent content
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -44,7 +27,11 @@ export default function BusinessHeader({ business }) {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Logo and Business Name */}
           <div className="flex items-center space-x-3">
-            <LogoIcon />
+            <img
+              src={business.logo}
+              alt={business.name}
+              className="w-10 h-10 rounded-full object-cover"
+            />
             <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white">
               {business.name}
             </h1>
@@ -61,25 +48,46 @@ export default function BusinessHeader({ business }) {
             >
               Contact Us
             </button>
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
-            >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+            {/* Theme toggle - only render after component is mounted */}
+            {mounted && (
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+            )}
+            {/* Placeholder to prevent layout shift */}
+            {!mounted && (
+              <div className="p-2 w-9 h-9 rounded-full bg-white/10">
+                <div className="w-5 h-5" />
+              </div>
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
-            >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+            {/* Theme toggle - only render after component is mounted */}
+            {mounted && (
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+            )}
+            {/* Placeholder to prevent layout shift */}
+            {!mounted && (
+              <div className="p-2 w-9 h-9 rounded-full bg-white/10">
+                <div className="w-5 h-5" />
+              </div>
+            )}
             <button
               className="text-white p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

@@ -3,14 +3,14 @@ import { getTheme } from "./themes";
 const businesses = {
   kiransalon: {
     name: "Kiran's Beauty Salon",
-    niche: "salon",
+    niche: "business",
     template: "template1",
     layout: "parallax",
     themeName: "carbon",
     theme: getTheme("carbon"),
     description:
       "Premier hair and beauty salon offering a range of luxury services.",
-    logo: "scissors",
+    logo: "https://images.pexels.com/photos/3997373/pexels-photo-3997373.jpeg",
     seo: {
       title: "Kiran's Beauty Salon | Luxury Hair & Beauty Services",
       description:
@@ -137,7 +137,7 @@ const businesses = {
     themeName: "azure",
     theme: getTheme("azure"),
     description: "24/7 emergency plumbing services you can trust.",
-    logo: "wrench",
+    logo: "https://images.pexels.com/photos/8486972/pexels-photo-8486972.jpeg",
     seo: {
       title: "Ram's Emergency Plumbing | 24/7 Plumbing Services",
       description:
@@ -262,7 +262,7 @@ const businesses = {
     themeName: "silicon",
     theme: getTheme("silicon"),
     description: "Innovative solutions for modern businesses",
-    logo: "laptop",
+    logo: "https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg",
     seo: {
       title: "Modern Business Solutions | Innovative Business Services",
       description:
@@ -377,7 +377,7 @@ const businesses = {
     themeName: "navy",
     theme: getTheme("navy"),
     description: "Expert professional services for your success",
-    logo: "laptop",
+    logo: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
     seo: {
       title: "Professional Services Group | Expert Business Solutions",
       description:
