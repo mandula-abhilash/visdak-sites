@@ -254,6 +254,235 @@ const businesses = {
       },
     ],
   },
+  "modern-business": {
+    name: "Modern Business Solutions",
+    niche: "business",
+    template: "template1",
+    layout: "parallax",
+    themeName: "silicon",
+    theme: getTheme("silicon"),
+    description: "Innovative solutions for modern businesses",
+    logo: "laptop",
+    seo: {
+      title: "Modern Business Solutions | Innovative Business Services",
+      description:
+        "Transform your business with our innovative solutions and expert consulting services.",
+      ogImage:
+        "https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg",
+      favicon: "/favicon.ico",
+    },
+    contact: {
+      phone: "+1 (555) 234-5678",
+      email: "hello@modernbusiness.com",
+      address: "789 Innovation Drive, Tech Valley, CA 94789",
+    },
+    sections: [
+      {
+        id: "hero",
+        type: "hero.split-with-image",
+        props: {
+          title: "Transform Your Business",
+          subtitle: "Innovative solutions for the modern enterprise",
+          image:
+            "https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg",
+          cta: {
+            primary: {
+              text: "Get Started",
+              href: "#contact",
+            },
+            secondary: {
+              text: "Learn More",
+              href: "#services",
+            },
+          },
+        },
+      },
+      {
+        id: "services",
+        type: "services.grid",
+        props: {
+          title: "Our Solutions",
+          description: "Comprehensive services for your business needs",
+          services: [
+            {
+              id: 1,
+              name: "Digital Transformation",
+              description:
+                "Transform your business with cutting-edge digital solutions",
+              price: "Custom",
+            },
+            {
+              id: 2,
+              name: "Business Consulting",
+              description: "Expert guidance for your business growth",
+              price: "$200/hr",
+            },
+          ],
+        },
+      },
+      {
+        id: "testimonials",
+        type: "testimonials.grid",
+        props: {
+          title: "Success Stories",
+          description: "What our clients say about our solutions",
+          testimonials: [
+            {
+              id: 1,
+              name: "John D.",
+              text: "Modern Business Solutions transformed our operations completely!",
+            },
+            {
+              id: 2,
+              name: "Sarah M.",
+              text: "The best business consulting service we've ever worked with.",
+            },
+          ],
+        },
+      },
+    ],
+    services: [
+      {
+        id: 1,
+        name: "Digital Transformation",
+        description:
+          "Transform your business with cutting-edge digital solutions",
+        price: "Custom",
+      },
+      {
+        id: 2,
+        name: "Business Consulting",
+        description: "Expert guidance for your business growth",
+        price: "$200/hr",
+      },
+    ],
+    testimonials: [
+      {
+        id: 1,
+        name: "John D.",
+        text: "Modern Business Solutions transformed our operations completely!",
+      },
+      {
+        id: 2,
+        name: "Sarah M.",
+        text: "The best business consulting service we've ever worked with.",
+      },
+    ],
+  },
+  professional: {
+    name: "Professional Services Group",
+    niche: "business",
+    template: "template2",
+    layout: "stacked",
+    themeName: "navy",
+    theme: getTheme("navy"),
+    description: "Expert professional services for your success",
+    logo: "laptop",
+    seo: {
+      title: "Professional Services Group | Expert Business Solutions",
+      description:
+        "Leading professional services firm delivering exceptional results for businesses.",
+      ogImage:
+        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+      favicon: "/favicon.ico",
+    },
+    contact: {
+      phone: "+1 (555) 345-6789",
+      email: "contact@professionalservices.com",
+      address: "321 Enterprise Ave, Business District, CA 94321",
+    },
+    sections: [
+      {
+        id: "hero",
+        type: "hero.with-background",
+        props: {
+          title: "Excellence in Professional Services",
+          subtitle: "Your success is our priority",
+          image:
+            "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+          cta: {
+            primary: {
+              text: "Schedule Consultation",
+              href: "#contact",
+            },
+            secondary: {
+              text: "Our Services",
+              href: "#services",
+            },
+          },
+        },
+      },
+      {
+        id: "services",
+        type: "services.list",
+        props: {
+          title: "Our Services",
+          description: "Comprehensive professional solutions",
+          services: [
+            {
+              id: 1,
+              name: "Strategic Consulting",
+              description: "Expert guidance for business strategy and growth",
+              price: "$250/hr",
+            },
+            {
+              id: 2,
+              name: "Financial Advisory",
+              description:
+                "Professional financial planning and advisory services",
+              price: "Custom",
+            },
+          ],
+        },
+      },
+      {
+        id: "testimonials",
+        type: "testimonials.carousel",
+        props: {
+          title: "Client Testimonials",
+          description: "What our clients say about our expertise",
+          testimonials: [
+            {
+              id: 1,
+              name: "Michael R.",
+              text: "Their strategic insights have been invaluable to our growth.",
+            },
+            {
+              id: 2,
+              name: "Patricia L.",
+              text: "Exceptional service and outstanding results every time.",
+            },
+          ],
+        },
+      },
+    ],
+    services: [
+      {
+        id: 1,
+        name: "Strategic Consulting",
+        description: "Expert guidance for business strategy and growth",
+        price: "$250/hr",
+      },
+      {
+        id: 2,
+        name: "Financial Advisory",
+        description: "Professional financial planning and advisory services",
+        price: "Custom",
+      },
+    ],
+    testimonials: [
+      {
+        id: 1,
+        name: "Michael R.",
+        text: "Their strategic insights have been invaluable to our growth.",
+      },
+      {
+        id: 2,
+        name: "Patricia L.",
+        text: "Exceptional service and outstanding results every time.",
+      },
+    ],
+  },
 };
 
 export function getBusinessBySubdomain(subdomain) {

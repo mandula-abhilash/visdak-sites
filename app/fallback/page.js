@@ -15,23 +15,52 @@ export default function FallbackPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          <DemoCard
-            title="Salon & Beauty"
-            description="Elegant templates for beauty businesses"
-            link="http://kiransalon.localhost:3000"
-          />
-          <DemoCard
-            title="Plumbing Services"
-            description="Professional templates for plumbers"
-            link="http://ramplumber.localhost:3000"
-          />
-          <DemoCard
-            title="Coming Soon"
-            description="More industries and templates"
-            link="#"
-            disabled
-          />
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Template-Based Demos
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <DemoCard
+              title="Salon & Beauty"
+              description="Elegant template for beauty businesses"
+              link="http://kiransalon.localhost:3000"
+            />
+            <DemoCard
+              title="Plumbing Services"
+              description="Professional template for plumbers"
+              link="http://ramplumber.localhost:3000"
+            />
+            <DemoCard
+              title="Coming Soon"
+              description="More templates"
+              link="#"
+              disabled
+            />
+          </div>
+        </div>
+
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Section-Based Demos
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <DemoCard
+              title="Modern Business"
+              description="Built with modular sections"
+              link="http://modern-business.localhost:3000"
+            />
+            <DemoCard
+              title="Professional Services"
+              description="Component-based design"
+              link="http://professional.localhost:3000"
+            />
+            <DemoCard
+              title="Coming Soon"
+              description="More section-based demos"
+              link="#"
+              disabled
+            />
+          </div>
         </div>
 
         <div className="text-center">
