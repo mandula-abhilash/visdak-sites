@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Building2, LayoutDashboard, Settings, Users } from "lucide-react";
+import {
+  Building2,
+  LayoutDashboard,
+  Settings,
+  Users,
+  FileText,
+} from "lucide-react";
 
 export default function AdminLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -25,6 +31,9 @@ export default function AdminLayout({ children }) {
             </SidebarItem>
             <SidebarItem href="/admin/businesses" icon={Building2}>
               Businesses
+            </SidebarItem>
+            <SidebarItem href="/admin/templates" icon={FileText}>
+              Templates
             </SidebarItem>
             <SidebarItem href="/admin/users" icon={Users}>
               Users
