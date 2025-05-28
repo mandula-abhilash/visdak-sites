@@ -8,6 +8,11 @@ export function middleware(request) {
   // Get the pathname
   const pathname = request.nextUrl.pathname;
 
+  // Allow admin routes to pass through
+  if (pathname.startsWith("/admin")) {
+    return NextResponse.next();
+  }
+
   // Define our development and production domains
   const currentHost =
     process.env.NODE_ENV === "production"
