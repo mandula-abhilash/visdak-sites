@@ -25,10 +25,10 @@ export default function BusinessesPage() {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Businesses</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Businesses</h1>
         <Link
           href="/admin/businesses/new"
-          className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90"
+          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
         >
           <Plus className="w-5 h-5 mr-2" />
           Add Business
@@ -82,7 +82,7 @@ export default function BusinessesPage() {
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   <Link
                     href={`/admin/businesses/${business.id}`}
-                    className="text-primary hover:text-primary/80"
+                    className="text-blue-600 hover:text-blue-800"
                   >
                     Edit
                   </Link>

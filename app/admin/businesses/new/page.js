@@ -75,7 +75,7 @@ export default function NewBusinessPage() {
                 <input
                   type="text"
                   {...register("name")}
-                  className="w-full px-4 py-2 text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                   placeholder="Enter business name"
                 />
               </div>
@@ -88,7 +88,7 @@ export default function NewBusinessPage() {
                   <input
                     type="text"
                     {...register("subdomain")}
-                    className="flex-1 px-4 py-2 text-gray-900 focus:outline-none"
+                    className="flex-1 px-4 py-2 bg-white text-gray-900 focus:outline-none"
                     placeholder="your-business"
                   />
                   <span className="inline-flex items-center px-4 bg-gray-50 text-gray-600 border-l border-gray-300">
@@ -104,7 +104,7 @@ export default function NewBusinessPage() {
                 <textarea
                   {...register("description")}
                   rows={4}
-                  className="w-full px-4 py-2 text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                   placeholder="Enter business description"
                 />
               </div>
@@ -119,7 +119,7 @@ export default function NewBusinessPage() {
                 </label>
                 <select
                   {...register("template")}
-                  className="w-full px-4 py-2 text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                 >
                   <option value="">Select a template</option>
                   <option value="beauty/template1">Beauty Template 1</option>
@@ -133,7 +133,7 @@ export default function NewBusinessPage() {
                 </label>
                 <select
                   {...register("theme")}
-                  className="w-full px-4 py-2 text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                 >
                   <option value="">Select a theme</option>
                   <option value="rose">Rose</option>
@@ -148,7 +148,7 @@ export default function NewBusinessPage() {
                 </label>
                 <select
                   {...register("layout")}
-                  className="w-full px-4 py-2 text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                 >
                   <option value="">Select a layout</option>
                   <option value="parallax">Parallax</option>
@@ -167,7 +167,7 @@ export default function NewBusinessPage() {
                 <input
                   type="text"
                   {...register("seo.title")}
-                  className="w-full px-4 py-2 text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                   placeholder="Enter SEO title"
                 />
               </div>
@@ -179,7 +179,7 @@ export default function NewBusinessPage() {
                 <textarea
                   {...register("seo.description")}
                   rows={4}
-                  className="w-full px-4 py-2 text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                   placeholder="Enter SEO description"
                 />
               </div>
@@ -191,7 +191,7 @@ export default function NewBusinessPage() {
                 <input
                   type="text"
                   {...register("seo.ogImage")}
-                  className="w-full px-4 py-2 text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                   placeholder="Enter OG image URL"
                 />
               </div>
