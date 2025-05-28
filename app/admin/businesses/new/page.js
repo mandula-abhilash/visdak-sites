@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   ArrowLeft,
@@ -123,29 +123,47 @@ export default function NewBusinessPage() {
           />
         );
       default:
-        return <input type={field.type} {...commonProps} />;
+        return <input type={field.type || "text"} {...commonProps} />;
     }
   };
 
-  const renderSection = (section) => {
-    return (
-      <div key={section.id} className="space-y-6">
-        {section.fields.map((field) => (
-          <div key={field.id}>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              {field.label}
-              {field.required && <span className="text-red-500 ml-1">*</span>}
-            </label>
-            {renderField(field)}
-            {errors[field.name] && (
-              <p className="mt-1 text-sm text-red-600">
-                This field is required
-              </p>
-            )}
-          </div>
-        ))}
-      </div>
-    );
+  const getCurrentStepFields = () => {
+    if (!selectedNiche || !fields) return [];
+
+    const currentStepFields = [];
+
+    switch (step) {
+      case 1:
+        if (fields.basic?.structure) {
+          currentStepFields.push(...fields.basic.structure);
+        }
+        break;
+      case 2:
+        if (fields.contact?.structure) {
+          currentStepFields.push(...fields.contact.structure);
+        }
+        break;
+      case 3:
+        if (fields.services?.structure) {
+          currentStepFields.push(...fields.services.structure);
+        }
+        if (fields.team?.structure) {
+          currentStepFields.push(...fields.team.structure);
+        }
+        break;
+      case 4:
+        if (fields.design?.structure) {
+          currentStepFields.push(...fields.design.structure);
+        }
+        break;
+      case 5:
+        if (fields.seo?.structure) {
+          currentStepFields.push(...fields.seo.structure);
+        }
+        break;
+    }
+
+    return currentStepFields;
   };
 
   if (loading) {
@@ -218,17 +236,27 @@ export default function NewBusinessPage() {
               </select>
             </div>
 
-            {/* Dynamic Form Sections */}
-            {selectedNiche &&
-              sections.map((section) => (
-                <div
-                  key={section.id}
-                  className="animate-in fade-in duration-500"
-                >
-                  <h3 className="text-lg font-semibold mb-4">{section.name}</h3>
-                  {renderSection(section)}
-                </div>
-              ))}
+            {/* Dynamic Form Fields */}
+            {selectedNiche && (
+              <div className="space-y-6 animate-in fade-in duration-500">
+                {getCurrentStepFields().map((field) => (
+                  <div key={field.name}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {field.label}
+                      {field.required && (
+                        <span className="text-red-500 ml-1">*</span>
+                      )}
+                    </label>
+                    {renderField(field)}
+                    {errors[field.name] && (
+                      <p className="mt-1 text-sm text-red-600">
+                        This field is required
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="flex justify-between mt-8 pt-6 border-t border-gray-100">
