@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import BusinessHeader from "@/components/BusinessHeader";
-import Footer from "@/components/Footer";
+import { getSection } from "@/lib/section-map";
 
 export default function ParallaxLayout({ business, children }) {
+  const Header = getSection("headers.basic");
+  const Footer = getSection("footers.basic");
+
   useEffect(() => {
     const root = document.documentElement;
     root.style.setProperty("--business-primary", business.theme.primary);
@@ -15,7 +17,7 @@ export default function ParallaxLayout({ business, children }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <BusinessHeader business={business} />
+      <Header business={business} />
       <main className="flex-grow">{children}</main>
       <Footer business={business} />
     </div>
