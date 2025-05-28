@@ -4,8 +4,8 @@ import BasicHeader from "@/sections/headers/basic";
 import WithBackgroundImageHero from "@/sections/hero/with-background-image";
 import ListWithIcons from "@/sections/services/list-with-icons";
 import SimpleGrid from "@/sections/testimonials/simple-grid";
-import ContactSection from "@/components/ContactSection";
 import BasicFooter from "@/sections/footers/basic";
+import BasicContact from "@/sections/contact/basic";
 
 export default function PlumberTemplate2({ business }) {
   return (
@@ -27,7 +27,7 @@ export default function PlumberTemplate2({ business }) {
         description={business.sections[2].props.description}
         testimonials={business.sections[2].props.testimonials}
       />
-      <ContactSection business={business} />
+      <BasicContact business={business} />
       <BasicFooter business={business} />
     </main>
   );
