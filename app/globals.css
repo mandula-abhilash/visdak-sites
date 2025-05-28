@@ -43,13 +43,8 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    
-    /* Business theme variables */
-    --business-primary: #000000;
-    --business-secondary: #333333;
-    --business-accent: #666666;
-    --business-primary-text: #FFFFFF;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;

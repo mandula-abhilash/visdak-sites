@@ -4,11 +4,7 @@ import { Quote } from "lucide-react";
 
 export default function SimpleGrid({ title, description, testimonials }) {
   return (
-    <section
-      id="testimonials"
-      className="py-16 md:py-24 px-6"
-      style={{ backgroundColor: "var(--business-primary-15)" }}
-    >
+    <section id="testimonials" className="py-16 md:py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
@@ -33,12 +29,7 @@ export default function SimpleGrid({ title, description, testimonials }) {
                   "{testimonial.text}"
                 </p>
                 <div className="mt-auto">
-                  <p
-                    className="font-semibold"
-                    style={{ color: "var(--business-primary)" }}
-                  >
-                    {testimonial.name}
-                  </p>
+                  <p className="font-semibold">{testimonial.name}</p>
                 </div>
               </div>
             </div>

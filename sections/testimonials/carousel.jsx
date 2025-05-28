@@ -23,11 +23,7 @@ export default function TestimonialsCarousel({
   };
 
   return (
-    <section
-      id="testimonials"
-      className="py-16 md:py-24 px-6"
-      style={{ backgroundColor: "var(--business-primary-15)" }}
-    >
+    <section id="testimonials" className="py-16 md:py-24 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
@@ -47,10 +43,7 @@ export default function TestimonialsCarousel({
               <p className="text-xl md:text-2xl italic mb-8 text-muted-foreground">
                 "{testimonials[currentIndex].text}"
               </p>
-              <p
-                className="text-lg font-semibold"
-                style={{ color: "var(--business-primary)" }}
-              >
+              <p className="text-lg font-semibold">
                 {testimonials[currentIndex].name}
               </p>
             </div>
