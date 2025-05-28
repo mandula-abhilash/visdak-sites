@@ -1,16 +1,16 @@
 "use client";
 
-import BusinessHeader from "@/components/BusinessHeader";
-import Footer from "@/components/Footer";
+import BasicHeader from "@/sections/headers/basic";
 import SplitWithImageHero from "@/sections/hero/split-with-image";
 import GridWithFeatures from "@/sections/services/grid-with-features";
 import SimpleGrid from "@/sections/testimonials/simple-grid";
 import ContactSection from "@/components/ContactSection";
+import BasicFooter from "@/sections/footers/basic";
 
 export default function BusinessTemplate1({ business }) {
   return (
     <main className="min-h-screen">
-      <BusinessHeader business={business} />
+      <BasicHeader business={business} />
       <SplitWithImageHero
         title={business.sections[0].props.title}
         subtitle={business.sections[0].props.subtitle}
@@ -28,7 +28,7 @@ export default function BusinessTemplate1({ business }) {
         testimonials={business.sections[2].props.testimonials}
       />
       <ContactSection business={business} />
-      <Footer business={business} />
+      <BasicFooter business={business} />
     </main>
   );
 }

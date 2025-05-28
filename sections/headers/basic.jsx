@@ -10,12 +10,14 @@ export default function BasicHeader({ business }) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
+  // Ensure component is mounted before rendering theme-dependent content
   useEffect(() => {
     setMounted(true);
   }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Navigation Bar */}
       <div
         className="w-full px-4 md:px-6 py-4"
         style={{
@@ -23,6 +25,7 @@ export default function BasicHeader({ business }) {
         }}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
+          {/* Logo and Business Name */}
           <div className="flex items-center space-x-3">
             <img
               src={business.logo}
@@ -34,6 +37,7 @@ export default function BasicHeader({ business }) {
             </h1>
           </div>
 
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <NavLinks />
             <button
@@ -44,6 +48,7 @@ export default function BasicHeader({ business }) {
             >
               Contact Us
             </button>
+            {/* Theme toggle - only render after component is mounted */}
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -53,6 +58,7 @@ export default function BasicHeader({ business }) {
                 {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
               </button>
             )}
+            {/* Placeholder to prevent layout shift */}
             {!mounted && (
               <div className="p-2 w-9 h-9 rounded-full bg-white/10">
                 <div className="w-5 h-5" />
@@ -60,7 +66,9 @@ export default function BasicHeader({ business }) {
             )}
           </nav>
 
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
+            {/* Theme toggle - only render after component is mounted */}
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -70,6 +78,7 @@ export default function BasicHeader({ business }) {
                 {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
               </button>
             )}
+            {/* Placeholder to prevent layout shift */}
             {!mounted && (
               <div className="p-2 w-9 h-9 rounded-full bg-white/10">
                 <div className="w-5 h-5" />
@@ -86,6 +95,7 @@ export default function BasicHeader({ business }) {
         </div>
       </div>
 
+      {/* Mobile Navigation Menu */}
       <div
         className={cn(
           "fixed inset-0 z-40 transform transition-transform duration-300 ease-in-out md:hidden",
@@ -93,7 +103,7 @@ export default function BasicHeader({ business }) {
         )}
         style={{
           backgroundColor: business.theme.primary,
-          top: "64px",
+          top: "64px", // Height of the header
         }}
       >
         <div className="flex flex-col p-8 space-y-8 text-lg">
@@ -110,6 +120,7 @@ export default function BasicHeader({ business }) {
         </div>
       </div>
 
+      {/* Spacer for fixed header */}
       <div className="h-16"></div>
     </header>
   );

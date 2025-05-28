@@ -1,16 +1,16 @@
 "use client";
 
-import BusinessHeader from "@/components/BusinessHeader";
-import Footer from "@/components/Footer";
+import BasicHeader from "@/sections/headers/basic";
 import WithBackgroundImageHero from "@/sections/hero/with-background-image";
 import ListWithIcons from "@/sections/services/list-with-icons";
 import SimpleGrid from "@/sections/testimonials/simple-grid";
 import ContactSection from "@/components/ContactSection";
+import BasicFooter from "@/sections/footers/basic";
 
 export default function PlumberTemplate2({ business }) {
   return (
     <main className="min-h-screen">
-      <BusinessHeader business={business} />
+      <BasicHeader business={business} />
       <WithBackgroundImageHero
         title={business.sections[0].props.title}
         subtitle={business.sections[0].props.subtitle}
@@ -28,7 +28,7 @@ export default function PlumberTemplate2({ business }) {
         testimonials={business.sections[2].props.testimonials}
       />
       <ContactSection business={business} />
-      <Footer business={business} />
+      <BasicFooter business={business} />
     </main>
   );
 }
