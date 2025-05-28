@@ -483,6 +483,211 @@ const businesses = {
       },
     ],
   },
+  lavanyabeauty: {
+    name: "Lavanya Beauty Parlour",
+    niche: "beauty",
+    template: "template1",
+    layout: "parallax",
+    themeName: "rose",
+    theme: getTheme("rose"),
+    description: "Enhancing your natural beauty with premium care and style.",
+    logo: "https://images.pexels.com/photos/3993446/pexels-photo-3993446.jpeg",
+    seo: {
+      title: "Lavanya Beauty Parlour | Best Salon in Hyderabad",
+      description:
+        "From facials to bridal makeup, Lavanya Beauty Parlour offers a complete range of beauty services. Book your appointment today!",
+      ogImage:
+        "https://images.pexels.com/photos/3993446/pexels-photo-3993446.jpeg",
+      favicon: "/lavanya-favicon.ico",
+      routes: {
+        services: {
+          title: "Beauty Services | Lavanya Beauty Parlour",
+          description:
+            "Haircuts, facials, bridal makeup & more. Explore our full service menu at Lavanya Beauty Parlour.",
+        },
+        about: {
+          title: "About Us | Lavanya Beauty Parlour",
+          description:
+            "Get to know Lavanya Beauty Parlour—our story, mission, and the women behind your glow.",
+        },
+        contact: {
+          title: "Contact Lavanya Beauty Parlour",
+          description:
+            "Get in touch with Lavanya Beauty Parlour for bookings, queries or directions. We’re happy to help!",
+        },
+        gallery: {
+          title: "Our Work | Lavanya Beauty Parlour",
+          description:
+            "See before-after transformations and bridal makeovers done at Lavanya Beauty Parlour.",
+        },
+      },
+    },
+    contact: {
+      phone: "+1 (555) 789-0123",
+      email: "appointments@beautyhaven.com",
+      address: "789 Serenity Lane, Wellness District, CA 94789",
+    },
+    sections: [
+      {
+        id: "hero",
+        type: "hero.split-with-image",
+        props: {
+          title: "Glow Like Never Before",
+          subtitle: "Lavanya Beauty Parlour - Where beauty meets care.",
+          image:
+            "https://images.pexels.com/photos/3993446/pexels-photo-3993446.jpeg",
+          cta: {
+            primary: {
+              text: "Book Appointment",
+              href: "#contact",
+            },
+            secondary: {
+              text: "View Services",
+              href: "#services",
+            },
+          },
+        },
+      },
+      {
+        id: "services",
+        type: "services.grid",
+        props: {
+          title: "Luxury Beauty Services",
+          description: "Indulge in our premium beauty treatments",
+          services: [
+            {
+              id: 1,
+              name: "Signature Facial",
+              description:
+                "Customized facial treatment for radiant, glowing skin",
+              price: "$120",
+            },
+            {
+              id: 2,
+              name: "Relaxation Massage",
+              description:
+                "60-minute full body massage for ultimate relaxation",
+              price: "$95",
+            },
+            {
+              id: 3,
+              name: "Hair Styling & Color",
+              description: "Professional hair services with premium products",
+              price: "From $85",
+            },
+            {
+              id: 4,
+              name: "Bridal Package",
+              description: "Complete beauty package for your special day",
+              price: "Custom",
+            },
+            {
+              id: 5,
+              name: "Manicure & Pedicure",
+              description: "Luxury nail care with premium products",
+              price: "$75",
+            },
+            {
+              id: 6,
+              name: "Body Treatments",
+              description: "Rejuvenating body wraps and scrubs",
+              price: "$110",
+            },
+          ],
+        },
+      },
+      {
+        id: "testimonials",
+        type: "testimonials.grid",
+        props: {
+          title: "Client Stories",
+          description: "What our clients say about their experience",
+          testimonials: [
+            {
+              id: 1,
+              name: "Rachel M.",
+              text: "The signature facial was incredible! My skin has never looked better.",
+            },
+            {
+              id: 2,
+              name: "Jennifer K.",
+              text: "The most relaxing massage I've ever had. The ambiance is perfect.",
+            },
+            {
+              id: 3,
+              name: "Lisa P.",
+              text: "Love my new hair color! The stylists are true artists.",
+            },
+            {
+              id: 4,
+              name: "Amanda S.",
+              text: "The bridal package made me feel absolutely beautiful on my wedding day.",
+            },
+          ],
+        },
+      },
+    ],
+    services: [
+      {
+        id: 1,
+        name: "Signature Facial",
+        description: "Customized facial treatment for radiant, glowing skin",
+        price: "$120",
+      },
+      {
+        id: 2,
+        name: "Relaxation Massage",
+        description: "60-minute full body massage for ultimate relaxation",
+        price: "$95",
+      },
+      {
+        id: 3,
+        name: "Hair Styling & Color",
+        description: "Professional hair services with premium products",
+        price: "From $85",
+      },
+      {
+        id: 4,
+        name: "Bridal Package",
+        description: "Complete beauty package for your special day",
+        price: "Custom",
+      },
+      {
+        id: 5,
+        name: "Manicure & Pedicure",
+        description: "Luxury nail care with premium products",
+        price: "$75",
+      },
+      {
+        id: 6,
+        name: "Body Treatments",
+        description: "Rejuvenating body wraps and scrubs",
+        price: "$110",
+      },
+    ],
+    testimonials: [
+      {
+        id: 1,
+        name: "Rachel M.",
+        text: "The signature facial was incredible! My skin has never looked better.",
+      },
+      {
+        id: 2,
+        name: "Jennifer K.",
+        text: "The most relaxing massage I've ever had. The ambiance is perfect.",
+      },
+      {
+        id: 3,
+        name: "Lisa P.",
+        text: "Love my new hair color! The stylists are true artists.",
+      },
+      {
+        id: 4,
+        name: "Amanda S.",
+        text: "The bridal package made me feel absolutely beautiful on my wedding day.",
+      },
+    ],
+  },
 };
 
 export function getBusinessBySubdomain(subdomain) {
