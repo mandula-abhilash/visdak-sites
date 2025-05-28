@@ -114,6 +114,32 @@ export default function NewBusinessPage() {
             ))}
           </select>
         );
+      case "radio":
+        return (
+          <div className="space-y-2">
+            {field.options?.map((option) => (
+              <label
+                key={option.value}
+                className="relative flex cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  {...register(field.name)}
+                  value={option.value}
+                  className="peer sr-only"
+                />
+                <div className="w-full p-4 rounded-lg border border-gray-200 hover:border-blue-500/50 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20">
+                  <h3 className="font-medium text-gray-900">{option.label}</h3>
+                  {option.description && (
+                    <p className="text-sm text-gray-500">
+                      {option.description}
+                    </p>
+                  )}
+                </div>
+              </label>
+            ))}
+          </div>
+        );
       case "file":
         return (
           <input
