@@ -9,3 +9,9 @@ By default, this template supports JSX syntax with Tailwind CSS classes, the sha
 Use icons from lucide-react for logos.
 
 Donot use Typescript. Use Javascript only
+
+To run the frontend project cd frontend from the project root and then run npm run dev
+
+To run the backend project cd backend from the project root and then run npm run server
+
+(cd frontend && npm run dev) && (cd backend && npm run server)
