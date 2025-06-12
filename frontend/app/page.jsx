@@ -16,10 +16,34 @@ export default async function Page({ searchParams }) {
     // Add subdomain to business object for canonical URLs
     business.subdomain = subdomain;
 
-    // Get the layout component
+    // Special handling for bhava template - use the complete template
+    if (business.template === "bhava") {
+      const BhavaTemplate = (
+        await import(
+          `@/app/templates/${business.niche}/${business.template}/index.js`
+        )
+      ).default;
+
+      const Head = (
+        await import(
+          `@/app/templates/${business.niche}/${business.template}/head.js`
+        )
+      ).default;
+
+      return (
+        <>
+          <Head
+            business={business}
+            pathname={searchParams.pathname || "home"}
+          />
+          <BhavaTemplate business={business} />
+        </>
+      );
+    }
+
+    // For other templates, use the section-based rendering
     const Layout = getLayout(business.layout || "stacked");
 
-    // Get Head component
     const Head = (
       await import(
         `@/app/templates/${business.niche}/${business.template}/head.js`
