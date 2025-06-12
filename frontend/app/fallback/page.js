@@ -31,10 +31,9 @@ export default function FallbackPage() {
               link="http://ramplumber.localhost:3000"
             />
             <DemoCard
-              title="Coming Soon"
-              description="More templates"
-              link="#"
-              disabled
+              title="Curtains & Blinds"
+              description="Premium window treatments business"
+              link="http://elegantdrapes.localhost:3000"
             />
           </div>
         </div>
@@ -55,10 +54,9 @@ export default function FallbackPage() {
               link="http://professional.localhost:3000"
             />
             <DemoCard
-              title="Coming Soon"
-              description="More section-based demos"
-              link="#"
-              disabled
+              title="Beauty Parlour"
+              description="Luxury beauty services"
+              link="http://lavanyabeauty.localhost:3000"
             />
           </div>
         </div>
