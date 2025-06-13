@@ -20,6 +20,8 @@ import {
   Zap,
   Crown,
   Heart,
+  Eye,
+  Layers,
 } from "lucide-react";
 
 export default function ThemeBuilderPage() {
@@ -152,26 +154,26 @@ export default function ThemeBuilderPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-5 gap-8 h-[calc(100vh-8rem)]">
             {/* Theme Selection Panel */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* Category Filter */}
-              <div className="space-y-4">
+            <div className="lg:col-span-2 space-y-4">
+              {/* Ultra-Compact Category Filter */}
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-slate-900">
                   Categories
                 </h3>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="flex flex-wrap gap-1">
                   {themeCategories.map((category) => {
                     const IconComponent = getCategoryIcon(category.id);
                     return (
                       <button
                         key={category.id}
                         onClick={() => setSelectedCategory(category.id)}
-                        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                        className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all ${
                           selectedCategory === category.id
-                            ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                            ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md"
                             : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200"
                         }`}
                       >
-                        <IconComponent className="w-4 h-4" />
+                        <IconComponent className="w-3 h-3" />
                         {category.name}
                       </button>
                     );
@@ -180,7 +182,7 @@ export default function ThemeBuilderPage() {
               </div>
 
               {/* Theme List */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-slate-900">
                     Themes
@@ -189,134 +191,305 @@ export default function ThemeBuilderPage() {
                     {filteredThemes.length} available
                   </span>
                 </div>
-                <div className="space-y-3 max-h-[calc(100vh-20rem)] overflow-y-auto pr-2 custom-scrollbar">
+                <div className="space-y-3 max-h-[calc(100vh-18rem)] overflow-y-auto pr-2 custom-scrollbar">
                   {filteredThemes.map((theme) => {
                     const currentVariant = getCurrentThemeVariant(theme);
                     const accessibility = checkThemeAccessibility(theme);
                     const isSelected = selectedTheme?.id === theme.id;
 
                     return (
-                      <button
+                      <div
                         key={theme.id}
                         onClick={() => setSelectedTheme(theme)}
-                        className={`w-full text-left p-4 rounded-xl border-2 transition-all hover:scale-[1.02] group ${
-                          isSelected
-                            ? "border-blue-500 ring-4 ring-blue-100 shadow-xl bg-gradient-to-br from-blue-50 to-purple-50"
-                            : "border-slate-200 hover:border-blue-300 hover:shadow-lg bg-white"
+                        className={`relative cursor-pointer group transition-all duration-300 ${
+                          isSelected ? "scale-[1.02]" : "hover:scale-[1.01]"
                         }`}
                       >
-                        <div className="space-y-3">
+                        {/* Selection Indicator */}
+                        {isSelected && (
+                          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-75"></div>
+                        )}
+
+                        <div
+                          className={`relative bg-white rounded-xl border-2 overflow-hidden transition-all ${
+                            isSelected
+                              ? "border-transparent shadow-2xl"
+                              : "border-slate-200 hover:border-blue-300 hover:shadow-lg"
+                          }`}
+                        >
                           {/* Theme Header */}
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <h4
-                                className="font-bold text-lg"
-                                style={{
-                                  color: isSelected
-                                    ? currentVariant?.primary
-                                    : currentVariant?.text,
-                                  fontFamily: currentVariant?.font,
-                                }}
-                              >
-                                {theme.name}
-                              </h4>
-                              <div className="flex items-center gap-2 mt-1">
-                                <span className="text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-600">
-                                  {theme.category}
+                          <div className="p-4 border-b border-slate-100">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <div
+                                  className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm"
+                                  style={{
+                                    backgroundColor: currentVariant?.primary,
+                                  }}
+                                >
+                                  <Palette
+                                    className="w-5 h-5"
+                                    style={{
+                                      color: currentVariant?.background,
+                                    }}
+                                  />
+                                </div>
+                                <div>
+                                  <h4
+                                    className="font-bold text-lg leading-tight"
+                                    style={{
+                                      fontFamily: currentVariant?.font,
+                                    }}
+                                  >
+                                    {theme.name}
+                                  </h4>
+                                  <div className="flex items-center gap-2 mt-1">
+                                    <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium">
+                                      {theme.category}
+                                    </span>
+                                    {accessibility[previewMode] ? (
+                                      <div className="flex items-center gap-1">
+                                        <Shield className="w-3 h-3 text-green-600" />
+                                        <span className="text-xs text-green-600 font-medium">
+                                          AA
+                                        </span>
+                                      </div>
+                                    ) : (
+                                      <div className="flex items-center gap-1">
+                                        <AlertTriangle className="w-3 h-3 text-amber-600" />
+                                        <span className="text-xs text-amber-600 font-medium">
+                                          Check
+                                        </span>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+
+                              {isSelected && (
+                                <div
+                                  className="w-8 h-8 rounded-full flex items-center justify-center shadow-lg ring-2 ring-white"
+                                  style={{
+                                    backgroundColor: currentVariant?.accent,
+                                  }}
+                                >
+                                  <Check
+                                    className="w-4 h-4"
+                                    style={{
+                                      color: currentVariant?.background,
+                                    }}
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Color Palette */}
+                          <div className="p-4 border-b border-slate-100">
+                            <div className="flex items-center gap-2 mb-2">
+                              <Layers className="w-4 h-4 text-slate-500" />
+                              <span className="text-sm font-medium text-slate-700">
+                                Color Palette
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-4 gap-2">
+                              <div className="text-center">
+                                <div
+                                  className="w-full h-8 rounded-lg border-2 border-white shadow-sm mb-1"
+                                  style={{
+                                    backgroundColor: currentVariant?.primary,
+                                  }}
+                                />
+                                <span className="text-xs text-slate-500 font-medium">
+                                  Primary
                                 </span>
-                                {accessibility[previewMode] ? (
-                                  <Shield className="w-3 h-3 text-green-600" />
-                                ) : (
-                                  <AlertTriangle className="w-3 h-3 text-amber-600" />
-                                )}
+                              </div>
+                              <div className="text-center">
+                                <div
+                                  className="w-full h-8 rounded-lg border-2 border-white shadow-sm mb-1"
+                                  style={{
+                                    backgroundColor: currentVariant?.accent,
+                                  }}
+                                />
+                                <span className="text-xs text-slate-500 font-medium">
+                                  Accent
+                                </span>
+                              </div>
+                              <div className="text-center">
+                                <div
+                                  className="w-full h-8 rounded-lg border-2 shadow-sm mb-1"
+                                  style={{
+                                    backgroundColor: currentVariant?.background,
+                                    borderColor: currentVariant?.border,
+                                  }}
+                                />
+                                <span className="text-xs text-slate-500 font-medium">
+                                  Background
+                                </span>
+                              </div>
+                              <div className="text-center">
+                                <div
+                                  className="w-full h-8 rounded-lg border-2 shadow-sm mb-1"
+                                  style={{
+                                    backgroundColor: currentVariant?.surface,
+                                    borderColor: currentVariant?.border,
+                                  }}
+                                />
+                                <span className="text-xs text-slate-500 font-medium">
+                                  Surface
+                                </span>
                               </div>
                             </div>
-                            {isSelected && (
+                          </div>
+
+                          {/* Enhanced Mini Preview */}
+                          <div
+                            className="p-4"
+                            style={{
+                              backgroundColor: currentVariant?.background,
+                            }}
+                          >
+                            <div className="flex items-center gap-2 mb-3">
+                              <Eye className="w-4 h-4 text-slate-500" />
+                              <span className="text-sm font-medium text-slate-700">
+                                Preview
+                              </span>
+                            </div>
+
+                            {/* Mini Website Layout */}
+                            <div
+                              className="rounded-lg border overflow-hidden"
+                              style={{
+                                borderColor: currentVariant?.border,
+                              }}
+                            >
+                              {/* Mini Header */}
                               <div
-                                className="w-8 h-8 rounded-full flex items-center justify-center shadow-lg"
+                                className="px-3 py-2 flex items-center justify-between"
                                 style={{
                                   backgroundColor: currentVariant?.primary,
                                 }}
                               >
-                                <Check
-                                  className="w-5 h-5"
+                                <div
+                                  className="text-xs font-bold"
                                   style={{
                                     color: currentVariant?.background,
+                                    fontFamily: currentVariant?.font,
                                   }}
-                                />
+                                >
+                                  Your Business
+                                </div>
+                                <div className="flex gap-1">
+                                  {[1, 2, 3].map((i) => (
+                                    <div
+                                      key={i}
+                                      className="w-1 h-1 rounded-full"
+                                      style={{
+                                        backgroundColor:
+                                          currentVariant?.background,
+                                        opacity: 0.7,
+                                      }}
+                                    />
+                                  ))}
+                                </div>
                               </div>
-                            )}
+
+                              {/* Mini Content */}
+                              <div
+                                className="p-3 space-y-2"
+                                style={{
+                                  backgroundColor: currentVariant?.surface,
+                                }}
+                              >
+                                <div
+                                  className="text-sm font-bold"
+                                  style={{
+                                    color: currentVariant?.text,
+                                    fontFamily: currentVariant?.font,
+                                  }}
+                                >
+                                  Welcome to Our Service
+                                </div>
+                                <div
+                                  className="text-xs leading-relaxed"
+                                  style={{
+                                    color: currentVariant?.textSecondary,
+                                  }}
+                                >
+                                  Professional solutions for your business needs
+                                  with expert guidance.
+                                </div>
+
+                                {/* Mini Services Grid */}
+                                <div className="grid grid-cols-2 gap-2 mt-3">
+                                  {[1, 2].map((i) => (
+                                    <div
+                                      key={i}
+                                      className="p-2 rounded border"
+                                      style={{
+                                        backgroundColor:
+                                          currentVariant?.background,
+                                        borderColor: currentVariant?.border,
+                                      }}
+                                    >
+                                      <div
+                                        className="w-4 h-4 rounded mb-1"
+                                        style={{
+                                          backgroundColor:
+                                            currentVariant?.accent,
+                                        }}
+                                      />
+                                      <div
+                                        className="text-xs font-medium"
+                                        style={{ color: currentVariant?.text }}
+                                      >
+                                        Service {i}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+
+                                {/* Mini CTA */}
+                                <div
+                                  className="inline-block px-3 py-1 rounded text-xs font-medium mt-2"
+                                  style={{
+                                    backgroundColor: currentVariant?.accent,
+                                    color: currentVariant?.background,
+                                  }}
+                                >
+                                  Get Started
+                                </div>
+                              </div>
+                            </div>
                           </div>
 
-                          {/* Color Palette Preview */}
-                          <div className="flex gap-2">
-                            <div
-                              className="w-10 h-10 rounded-lg border-2 border-white shadow-sm"
-                              style={{
-                                backgroundColor: currentVariant?.primary,
-                              }}
-                              title="Primary Color"
-                            />
-                            <div
-                              className="w-10 h-10 rounded-lg border-2 border-white shadow-sm"
-                              style={{
-                                backgroundColor: currentVariant?.accent,
-                              }}
-                              title="Accent Color"
-                            />
-                            <div
-                              className="w-10 h-10 rounded-lg border-2 border-white shadow-sm"
-                              style={{
-                                backgroundColor: currentVariant?.background,
-                                border: `2px solid ${currentVariant?.border}`,
-                              }}
-                              title="Background Color"
-                            />
-                            <div
-                              className="w-10 h-10 rounded-lg border-2 border-white shadow-sm"
-                              style={{
-                                backgroundColor: currentVariant?.surface,
-                                border: `2px solid ${currentVariant?.border}`,
-                              }}
-                              title="Surface Color"
-                            />
-                          </div>
-
-                          {/* Mini Preview */}
-                          <div
-                            className="p-3 rounded-lg border"
-                            style={{
-                              backgroundColor: currentVariant?.surface,
-                              borderColor: currentVariant?.border,
-                            }}
-                          >
-                            <div
-                              className="text-sm font-semibold mb-1"
-                              style={{
-                                color: currentVariant?.text,
-                                fontFamily: currentVariant?.font,
-                              }}
-                            >
-                              Your Business Name
-                            </div>
-                            <div
-                              className="text-xs mb-2"
-                              style={{ color: currentVariant?.textSecondary }}
-                            >
-                              Professional services that deliver results
-                            </div>
-                            <div
-                              className="inline-block px-3 py-1 rounded-md text-xs font-medium"
-                              style={{
-                                backgroundColor: currentVariant?.accent,
-                                color: currentVariant?.background,
-                              }}
-                            >
-                              Get Started
+                          {/* Theme Stats */}
+                          <div className="px-4 py-3 bg-slate-50 border-t border-slate-100">
+                            <div className="flex items-center justify-between text-xs">
+                              <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-1">
+                                  <div className="w-2 h-2 rounded-full bg-green-500" />
+                                  <span className="text-slate-600 font-medium">
+                                    Modern
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <div className="w-2 h-2 rounded-full bg-blue-500" />
+                                  <span className="text-slate-600 font-medium">
+                                    Responsive
+                                  </span>
+                                </div>
+                              </div>
+                              <span
+                                className="font-medium"
+                                style={{ color: currentVariant?.primary }}
+                              >
+                                {currentVariant?.font}
+                              </span>
                             </div>
                           </div>
                         </div>
-                      </button>
+                      </div>
                     );
                   })}
                 </div>
