@@ -21,7 +21,7 @@ import {
   Crown,
   Heart,
   Eye,
-  Layers,
+  ArrowRight,
 } from "lucide-react";
 
 export default function ThemeBuilderPage() {
@@ -74,6 +74,13 @@ export default function ThemeBuilderPage() {
     return icons[category] || Sparkles;
   };
 
+  const handleNextStep = () => {
+    if (selectedTheme) {
+      // Navigate to font selector page
+      window.location.href = `/admin/builder/fonts?theme=${selectedTheme.id}`;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Fixed Header */}
@@ -82,10 +89,10 @@ export default function ThemeBuilderPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Theme Builder
+                Choose Your Theme
               </h1>
               <p className="text-sm text-slate-600 mt-1">
-                Choose a color theme that defines your website's visual identity
+                Select a color palette that matches your brand identity
               </p>
             </div>
 
@@ -139,10 +146,12 @@ export default function ThemeBuilderPage() {
 
               {/* Next Button */}
               <button
+                onClick={handleNextStep}
                 disabled={!selectedTheme}
-                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium transition-all hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium transition-all hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
-                Next Step
+                Choose Fonts
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -185,13 +194,13 @@ export default function ThemeBuilderPage() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-slate-900">
-                    Themes
+                    Color Themes
                   </h3>
                   <span className="text-sm text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
                     {filteredThemes.length} available
                   </span>
                 </div>
-                <div className="space-y-3 max-h-[calc(100vh-18rem)] overflow-y-auto pr-2 custom-scrollbar">
+                <div className="space-y-3 overflow-y-auto pr-2 custom-scrollbar">
                   {filteredThemes.map((theme) => {
                     const currentVariant = getCurrentThemeVariant(theme);
                     const accessibility = checkThemeAccessibility(theme);
@@ -201,13 +210,13 @@ export default function ThemeBuilderPage() {
                       <div
                         key={theme.id}
                         onClick={() => setSelectedTheme(theme)}
-                        className={`relative cursor-pointer group transition-all duration-300 ${
+                        className={`relative px-4 cursor-pointer group transition-all duration-300 ${
                           isSelected ? "scale-[1.02]" : "hover:scale-[1.01]"
                         }`}
                       >
                         {/* Selection Indicator */}
                         {isSelected && (
-                          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-75"></div>
+                          <div className="absolute -inset-1 rounded-2xl blur opacity-75"></div>
                         )}
 
                         <div
@@ -235,12 +244,7 @@ export default function ThemeBuilderPage() {
                                   />
                                 </div>
                                 <div>
-                                  <h4
-                                    className="font-bold text-lg leading-tight"
-                                    style={{
-                                      fontFamily: currentVariant?.font,
-                                    }}
-                                  >
+                                  <h4 className="font-bold text-lg leading-tight">
                                     {theme.name}
                                   </h4>
                                   <div className="flex items-center gap-2 mt-1">
@@ -286,12 +290,6 @@ export default function ThemeBuilderPage() {
 
                           {/* Color Palette */}
                           <div className="p-4 border-b border-slate-100">
-                            <div className="flex items-center gap-2 mb-2">
-                              <Layers className="w-4 h-4 text-slate-500" />
-                              <span className="text-sm font-medium text-slate-700">
-                                Color Palette
-                              </span>
-                            </div>
                             <div className="grid grid-cols-4 gap-2">
                               <div className="text-center">
                                 <div
@@ -339,153 +337,6 @@ export default function ThemeBuilderPage() {
                                   Surface
                                 </span>
                               </div>
-                            </div>
-                          </div>
-
-                          {/* Enhanced Mini Preview */}
-                          <div
-                            className="p-4"
-                            style={{
-                              backgroundColor: currentVariant?.background,
-                            }}
-                          >
-                            <div className="flex items-center gap-2 mb-3">
-                              <Eye className="w-4 h-4 text-slate-500" />
-                              <span className="text-sm font-medium text-slate-700">
-                                Preview
-                              </span>
-                            </div>
-
-                            {/* Mini Website Layout */}
-                            <div
-                              className="rounded-lg border overflow-hidden"
-                              style={{
-                                borderColor: currentVariant?.border,
-                              }}
-                            >
-                              {/* Mini Header */}
-                              <div
-                                className="px-3 py-2 flex items-center justify-between"
-                                style={{
-                                  backgroundColor: currentVariant?.primary,
-                                }}
-                              >
-                                <div
-                                  className="text-xs font-bold"
-                                  style={{
-                                    color: currentVariant?.background,
-                                    fontFamily: currentVariant?.font,
-                                  }}
-                                >
-                                  Your Business
-                                </div>
-                                <div className="flex gap-1">
-                                  {[1, 2, 3].map((i) => (
-                                    <div
-                                      key={i}
-                                      className="w-1 h-1 rounded-full"
-                                      style={{
-                                        backgroundColor:
-                                          currentVariant?.background,
-                                        opacity: 0.7,
-                                      }}
-                                    />
-                                  ))}
-                                </div>
-                              </div>
-
-                              {/* Mini Content */}
-                              <div
-                                className="p-3 space-y-2"
-                                style={{
-                                  backgroundColor: currentVariant?.surface,
-                                }}
-                              >
-                                <div
-                                  className="text-sm font-bold"
-                                  style={{
-                                    color: currentVariant?.text,
-                                    fontFamily: currentVariant?.font,
-                                  }}
-                                >
-                                  Welcome to Our Service
-                                </div>
-                                <div
-                                  className="text-xs leading-relaxed"
-                                  style={{
-                                    color: currentVariant?.textSecondary,
-                                  }}
-                                >
-                                  Professional solutions for your business needs
-                                  with expert guidance.
-                                </div>
-
-                                {/* Mini Services Grid */}
-                                <div className="grid grid-cols-2 gap-2 mt-3">
-                                  {[1, 2].map((i) => (
-                                    <div
-                                      key={i}
-                                      className="p-2 rounded border"
-                                      style={{
-                                        backgroundColor:
-                                          currentVariant?.background,
-                                        borderColor: currentVariant?.border,
-                                      }}
-                                    >
-                                      <div
-                                        className="w-4 h-4 rounded mb-1"
-                                        style={{
-                                          backgroundColor:
-                                            currentVariant?.accent,
-                                        }}
-                                      />
-                                      <div
-                                        className="text-xs font-medium"
-                                        style={{ color: currentVariant?.text }}
-                                      >
-                                        Service {i}
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-
-                                {/* Mini CTA */}
-                                <div
-                                  className="inline-block px-3 py-1 rounded text-xs font-medium mt-2"
-                                  style={{
-                                    backgroundColor: currentVariant?.accent,
-                                    color: currentVariant?.background,
-                                  }}
-                                >
-                                  Get Started
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Theme Stats */}
-                          <div className="px-4 py-3 bg-slate-50 border-t border-slate-100">
-                            <div className="flex items-center justify-between text-xs">
-                              <div className="flex items-center gap-4">
-                                <div className="flex items-center gap-1">
-                                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                                  <span className="text-slate-600 font-medium">
-                                    Modern
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-1">
-                                  <div className="w-2 h-2 rounded-full bg-blue-500" />
-                                  <span className="text-slate-600 font-medium">
-                                    Responsive
-                                  </span>
-                                </div>
-                              </div>
-                              <span
-                                className="font-medium"
-                                style={{ color: currentVariant?.primary }}
-                              >
-                                {currentVariant?.font}
-                              </span>
                             </div>
                           </div>
                         </div>
@@ -553,7 +404,6 @@ export default function ThemeBuilderPage() {
                       style={{
                         backgroundColor:
                           getCurrentThemeVariant(selectedTheme).background,
-                        fontFamily: getCurrentThemeVariant(selectedTheme).font,
                         borderColor:
                           getCurrentThemeVariant(selectedTheme).border,
                       }}
@@ -619,8 +469,6 @@ export default function ThemeBuilderPage() {
                               style={{
                                 color:
                                   getCurrentThemeVariant(selectedTheme).text,
-                                fontFamily:
-                                  getCurrentThemeVariant(selectedTheme).font,
                               }}
                             >
                               Transform Your Business
@@ -803,11 +651,11 @@ export default function ThemeBuilderPage() {
                         <Palette className="w-10 h-10 text-blue-600" />
                       </div>
                       <h3 className="text-2xl font-semibold text-slate-900 mb-3">
-                        Select a Theme
+                        Select a Color Theme
                       </h3>
                       <p className="text-slate-600 max-w-sm">
-                        Choose a color theme from the left panel to see a live
-                        preview of how your website will look
+                        Choose a color palette from the left panel to see a live
+                        preview of your website
                       </p>
                     </div>
                   </div>
@@ -820,7 +668,7 @@ export default function ThemeBuilderPage() {
 
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
+          width: 2px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
           background: #f1f5f9;
