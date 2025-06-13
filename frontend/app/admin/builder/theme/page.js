@@ -16,6 +16,10 @@ import {
   Sparkles,
   AlertTriangle,
   Shield,
+  Star,
+  Zap,
+  Crown,
+  Heart,
 } from "lucide-react";
 
 export default function ThemeBuilderPage() {
@@ -52,17 +56,33 @@ export default function ThemeBuilderPage() {
     };
   };
 
+  const getCategoryIcon = (category) => {
+    const icons = {
+      Professional: Zap,
+      Premium: Crown,
+      Beauty: Heart,
+      Health: Shield,
+      Business: Sparkles,
+      Finance: Star,
+      Creative: Palette,
+      Minimal: Sun,
+      Nature: Sparkles,
+      Modern: Zap,
+    };
+    return icons[category] || Sparkles;
+  };
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Fixed Header */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-foreground">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Theme Builder
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-slate-600 mt-1">
                 Choose a color theme that defines your website's visual identity
               </p>
             </div>
@@ -70,7 +90,7 @@ export default function ThemeBuilderPage() {
             <div className="flex items-center gap-4">
               {/* Accessibility Status */}
               {selectedTheme && (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200">
                   {checkThemeAccessibility(selectedTheme).overall ? (
                     <>
                       <Shield className="w-4 h-4 text-green-600" />
@@ -90,35 +110,35 @@ export default function ThemeBuilderPage() {
               )}
 
               {/* Preview Mode Toggle */}
-              <div className="flex items-center gap-2 p-1 bg-muted rounded-lg">
+              <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-xl">
                 <button
                   onClick={() => setPreviewMode("light")}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     previewMode === "light"
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-slate-600 hover:text-slate-900"
                   }`}
                 >
                   <Sun className="w-4 h-4" />
-                  Light Preview
+                  Light
                 </button>
                 <button
                   onClick={() => setPreviewMode("dark")}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     previewMode === "dark"
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-slate-600 hover:text-slate-900"
                   }`}
                 >
                   <Moon className="w-4 h-4" />
-                  Dark Preview
+                  Dark
                 </button>
               </div>
 
               {/* Next Button */}
               <button
                 disabled={!selectedTheme}
-                className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium transition-all hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 Next Step
               </button>
@@ -134,33 +154,42 @@ export default function ThemeBuilderPage() {
             {/* Theme Selection Panel */}
             <div className="lg:col-span-2 space-y-6">
               {/* Category Filter */}
-              <div className="space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-slate-900">
                   Categories
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {themeCategories.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => setSelectedCategory(category.id)}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                        selectedCategory === category.id
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-muted-foreground hover:bg-muted/80"
-                      }`}
-                    >
-                      {category.name}
-                    </button>
-                  ))}
+                <div className="grid grid-cols-2 gap-2">
+                  {themeCategories.map((category) => {
+                    const IconComponent = getCategoryIcon(category.id);
+                    return (
+                      <button
+                        key={category.id}
+                        onClick={() => setSelectedCategory(category.id)}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                          selectedCategory === category.id
+                            ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                            : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200"
+                        }`}
+                      >
+                        <IconComponent className="w-4 h-4" />
+                        {category.name}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
               {/* Theme List */}
-              <div className="space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  Themes ({filteredThemes.length})
-                </h3>
-                <div className="space-y-3 max-h-[calc(100vh-20rem)] overflow-y-auto pr-2">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    Themes
+                  </h3>
+                  <span className="text-sm text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
+                    {filteredThemes.length} available
+                  </span>
+                </div>
+                <div className="space-y-3 max-h-[calc(100vh-20rem)] overflow-y-auto pr-2 custom-scrollbar">
                   {filteredThemes.map((theme) => {
                     const currentVariant = getCurrentThemeVariant(theme);
                     const accessibility = checkThemeAccessibility(theme);
@@ -170,17 +199,11 @@ export default function ThemeBuilderPage() {
                       <button
                         key={theme.id}
                         onClick={() => setSelectedTheme(theme)}
-                        className={`w-full text-left p-4 rounded-xl border-2 transition-all hover:scale-[1.02] ${
+                        className={`w-full text-left p-4 rounded-xl border-2 transition-all hover:scale-[1.02] group ${
                           isSelected
-                            ? "border-primary ring-4 ring-primary/20 shadow-lg"
-                            : "border-border hover:border-primary/50 hover:shadow-md"
+                            ? "border-blue-500 ring-4 ring-blue-100 shadow-xl bg-gradient-to-br from-blue-50 to-purple-50"
+                            : "border-slate-200 hover:border-blue-300 hover:shadow-lg bg-white"
                         }`}
-                        style={{
-                          backgroundColor:
-                            currentVariant?.surface ||
-                            currentVariant?.background,
-                          fontFamily: currentVariant?.font,
-                        }}
                       >
                         <div className="space-y-3">
                           {/* Theme Header */}
@@ -188,80 +211,96 @@ export default function ThemeBuilderPage() {
                             <div>
                               <h4
                                 className="font-bold text-lg"
-                                style={{ color: currentVariant?.text }}
+                                style={{
+                                  color: isSelected
+                                    ? currentVariant?.primary
+                                    : currentVariant?.text,
+                                  fontFamily: currentVariant?.font,
+                                }}
                               >
                                 {theme.name}
                               </h4>
-                              <p
-                                className="text-sm opacity-70"
-                                style={{ color: currentVariant?.textSecondary }}
+                              <div className="flex items-center gap-2 mt-1">
+                                <span className="text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-600">
+                                  {theme.category}
+                                </span>
+                                {accessibility[previewMode] ? (
+                                  <Shield className="w-3 h-3 text-green-600" />
+                                ) : (
+                                  <AlertTriangle className="w-3 h-3 text-amber-600" />
+                                )}
+                              </div>
+                            </div>
+                            {isSelected && (
+                              <div
+                                className="w-8 h-8 rounded-full flex items-center justify-center shadow-lg"
+                                style={{
+                                  backgroundColor: currentVariant?.primary,
+                                }}
                               >
-                                {theme.category}
-                              </p>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              {/* Accessibility Indicator */}
-                              {accessibility[previewMode] ? (
-                                <Shield className="w-4 h-4 text-green-600" />
-                              ) : (
-                                <AlertTriangle className="w-4 h-4 text-amber-600" />
-                              )}
-                              {isSelected && (
-                                <div
-                                  className="w-6 h-6 rounded-full flex items-center justify-center"
+                                <Check
+                                  className="w-5 h-5"
                                   style={{
-                                    backgroundColor: currentVariant?.accent,
+                                    color: currentVariant?.background,
                                   }}
-                                >
-                                  <Check
-                                    className="w-4 h-4"
-                                    style={{
-                                      color: currentVariant?.background,
-                                    }}
-                                  />
-                                </div>
-                              )}
-                            </div>
+                                />
+                              </div>
+                            )}
                           </div>
 
                           {/* Color Palette Preview */}
                           <div className="flex gap-2">
                             <div
-                              className="w-8 h-8 rounded-lg border"
+                              className="w-10 h-10 rounded-lg border-2 border-white shadow-sm"
                               style={{
                                 backgroundColor: currentVariant?.primary,
-                                borderColor: currentVariant?.border,
                               }}
                               title="Primary Color"
                             />
                             <div
-                              className="w-8 h-8 rounded-lg border"
+                              className="w-10 h-10 rounded-lg border-2 border-white shadow-sm"
                               style={{
                                 backgroundColor: currentVariant?.accent,
-                                borderColor: currentVariant?.border,
                               }}
                               title="Accent Color"
                             />
                             <div
-                              className="w-8 h-8 rounded-lg border"
+                              className="w-10 h-10 rounded-lg border-2 border-white shadow-sm"
                               style={{
                                 backgroundColor: currentVariant?.background,
-                                borderColor: currentVariant?.border,
+                                border: `2px solid ${currentVariant?.border}`,
                               }}
                               title="Background Color"
+                            />
+                            <div
+                              className="w-10 h-10 rounded-lg border-2 border-white shadow-sm"
+                              style={{
+                                backgroundColor: currentVariant?.surface,
+                                border: `2px solid ${currentVariant?.border}`,
+                              }}
+                              title="Surface Color"
                             />
                           </div>
 
                           {/* Mini Preview */}
-                          <div className="space-y-2">
+                          <div
+                            className="p-3 rounded-lg border"
+                            style={{
+                              backgroundColor: currentVariant?.surface,
+                              borderColor: currentVariant?.border,
+                            }}
+                          >
                             <div
-                              className="text-sm font-semibold"
-                              style={{ color: currentVariant?.text }}
+                              className="text-sm font-semibold mb-1"
+                              style={{
+                                color: currentVariant?.text,
+                                fontFamily: currentVariant?.font,
+                              }}
                             >
                               Your Business Name
                             </div>
                             <div
-                              className="text-xs opacity-70"
+                              className="text-xs mb-2"
                               style={{ color: currentVariant?.textSecondary }}
                             >
                               Professional services that deliver results
@@ -288,14 +327,14 @@ export default function ThemeBuilderPage() {
             <div className="lg:col-span-3">
               <div className="sticky top-24">
                 {selectedTheme ? (
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {/* Preview Header */}
                     <div className="flex items-center justify-between">
                       <div>
-                        <h3 className="text-xl font-bold text-foreground">
+                        <h3 className="text-2xl font-bold text-slate-900">
                           {selectedTheme.name} Preview
                         </h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-slate-600">
                           {previewMode === "light" ? "Light" : "Dark"} mode
                           preview
                         </p>
@@ -307,13 +346,13 @@ export default function ThemeBuilderPage() {
                           const accessibility =
                             checkThemeAccessibility(selectedTheme);
                           return (
-                            <div className="flex items-center gap-2 text-sm">
-                              <span className="text-muted-foreground">
+                            <div className="flex items-center gap-2 text-sm bg-white px-3 py-2 rounded-lg border">
+                              <span className="text-slate-600">
                                 Accessibility:
                               </span>
                               <div className="flex gap-1">
                                 <div
-                                  className={`w-2 h-2 rounded-full ${
+                                  className={`w-3 h-3 rounded-full ${
                                     accessibility.light
                                       ? "bg-green-500"
                                       : "bg-amber-500"
@@ -321,7 +360,7 @@ export default function ThemeBuilderPage() {
                                   title="Light mode accessibility"
                                 />
                                 <div
-                                  className={`w-2 h-2 rounded-full ${
+                                  className={`w-3 h-3 rounded-full ${
                                     accessibility.dark
                                       ? "bg-green-500"
                                       : "bg-amber-500"
@@ -337,14 +376,16 @@ export default function ThemeBuilderPage() {
 
                     {/* Live Preview */}
                     <div
-                      className="rounded-2xl shadow-2xl border border-border/50 overflow-hidden"
+                      className="rounded-2xl shadow-2xl border overflow-hidden"
                       style={{
                         backgroundColor:
                           getCurrentThemeVariant(selectedTheme).background,
                         fontFamily: getCurrentThemeVariant(selectedTheme).font,
+                        borderColor:
+                          getCurrentThemeVariant(selectedTheme).border,
                       }}
                     >
-                      <div className="p-6">
+                      <div className="p-8">
                         {/* Mock Website Preview */}
                         <div className="max-w-4xl mx-auto space-y-8">
                           {/* Header */}
@@ -583,15 +624,15 @@ export default function ThemeBuilderPage() {
                   </div>
                 ) : (
                   /* No Theme Selected State */
-                  <div className="bg-card rounded-2xl shadow-xl border border-border/50 h-full flex items-center justify-center">
+                  <div className="bg-white rounded-2xl shadow-xl border h-full flex items-center justify-center">
                     <div className="text-center p-8">
-                      <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Palette className="w-8 h-8 text-muted-foreground" />
+                      <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Palette className="w-10 h-10 text-blue-600" />
                       </div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">
+                      <h3 className="text-2xl font-semibold text-slate-900 mb-3">
                         Select a Theme
                       </h3>
-                      <p className="text-muted-foreground max-w-sm">
+                      <p className="text-slate-600 max-w-sm">
                         Choose a color theme from the left panel to see a live
                         preview of how your website will look
                       </p>
@@ -603,6 +644,23 @@ export default function ThemeBuilderPage() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #f1f5f9;
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #94a3b8;
+        }
+      `}</style>
     </div>
   );
 }
