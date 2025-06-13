@@ -97,3 +97,58 @@
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out forwards;
 }
+
+/* Scroll behavior classes */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Parallax effects */
+.parallax-container {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax-element {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.parallax-back {
+  transform: translateZ(-1px) scale(2);
+}
+
+/* Fade in sections */
+.fade-in-sections section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-sections section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom scrollbar for preview */
+.website-preview::-webkit-scrollbar {
+  width: 8px;
+}
+
+.website-preview::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.website-preview::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.website-preview::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

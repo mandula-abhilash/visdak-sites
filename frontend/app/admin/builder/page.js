@@ -14,6 +14,7 @@ import Link from "next/link";
 import SectionBuilder from "./components/SectionBuilder";
 import GlobalSettings from "./components/GlobalSettings";
 import SectionLibrary from "./components/SectionLibrary";
+import WebsitePreview from "./components/WebsitePreview";
 
 export default function WebsiteBuilderPage() {
   const [sections, setSections] = useState([]);
@@ -140,9 +141,16 @@ export default function WebsiteBuilderPage() {
       <div className="flex">
         {/* Main Content */}
         <div className={`flex-1 ${showSettings ? "mr-80" : ""}`}>
-          <div className="p-6">
-            {/* Add Section Button */}
-            {!previewMode && (
+          {previewMode ? (
+            /* Full Website Preview */
+            <WebsitePreview
+              sections={sections}
+              globalSettings={globalSettings}
+            />
+          ) : (
+            /* Edit Mode */
+            <div className="p-6">
+              {/* Add Section Button */}
               <div className="mb-8">
                 <button
                   onClick={() => setShowSectionLibrary(true)}
@@ -154,46 +162,46 @@ export default function WebsiteBuilderPage() {
                   </p>
                 </button>
               </div>
-            )}
 
-            {/* Sections */}
-            <div className="space-y-6">
-              {sections.map((section) => (
-                <SectionBuilder
-                  key={section.id}
-                  section={section}
-                  globalSettings={globalSettings}
-                  previewMode={previewMode}
-                  onUpdate={(props) => updateSection(section.id, props)}
-                  onRemove={() => removeSection(section.id)}
-                  onMove={(direction) => moveSection(section.id, direction)}
-                />
-              ))}
-            </div>
-
-            {/* Empty State */}
-            {sections.length === 0 && (
-              <div className="text-center py-16">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-                  <Plus className="w-8 h-8 text-gray-400" />
-                </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  Start building your website
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Add sections like hero, about us, services, and more to create
-                  your perfect website.
-                </p>
-                <button
-                  onClick={() => setShowSectionLibrary(true)}
-                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Your First Section
-                </button>
+              {/* Sections */}
+              <div className="space-y-6">
+                {sections.map((section) => (
+                  <SectionBuilder
+                    key={section.id}
+                    section={section}
+                    globalSettings={globalSettings}
+                    previewMode={false}
+                    onUpdate={(props) => updateSection(section.id, props)}
+                    onRemove={() => removeSection(section.id)}
+                    onMove={(direction) => moveSection(section.id, direction)}
+                  />
+                ))}
               </div>
-            )}
-          </div>
+
+              {/* Empty State */}
+              {sections.length === 0 && (
+                <div className="text-center py-16">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                    <Plus className="w-8 h-8 text-gray-400" />
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    Start building your website
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Add sections like hero, about us, services, and more to
+                    create your perfect website.
+                  </p>
+                  <button
+                    onClick={() => setShowSectionLibrary(true)}
+                    className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Your First Section
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Global Settings Sidebar */}
