@@ -935,8 +935,8 @@ const businesses = {
     niche: "salon",
     template: "bhava",
     layout: "stacked",
-    themeName: "copper",
-    fontName: "elegant",
+    themeName: "rose",
+    fontName: "modern",
     theme: getTheme("gold"),
     description:
       "Premier unisex salon offering professional beauty and grooming services in a luxurious environment. Your style, our passion.",

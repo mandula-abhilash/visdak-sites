@@ -117,7 +117,7 @@ export default function Navigation({ business }) {
                   /\D/g,
                   ""
                 )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
-                className="bg-[var(--template-success)] hover:bg-[var(--template-success-hover)] text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center font-medium"
+                className="bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center font-medium"
                 style={{ fontFamily: "var(--template-font-body)" }}
               >
                 <MessageCircle className="h-4 w-4 mr-2" />
@@ -226,7 +226,7 @@ export default function Navigation({ business }) {
                     ""
                   )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
                   onClick={handleLinkClick}
-                  className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium bg-[var(--template-success)] hover:bg-[var(--template-success-hover)] text-white rounded-lg transition-colors duration-200"
+                  className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white rounded-lg transition-colors duration-200"
                   style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   <MessageCircle className="h-5 w-5 mr-3 flex-shrink-0" />

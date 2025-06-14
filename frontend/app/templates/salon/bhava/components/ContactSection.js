@@ -96,7 +96,7 @@ export default function ContactSection({ business }) {
                 )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment%20at%20${
                   business.name
                 }`}
-                className="inline-flex items-center bg-[var(--template-success)] hover:bg-[var(--template-success-hover)] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
                 style={{ fontFamily: "var(--template-font-body)" }}
               >
                 <MessageCircle className="h-6 w-6 mr-3" />
