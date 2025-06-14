@@ -13,8 +13,6 @@ export default function HeroSection({ business }) {
           alt="Professional salon interior with modern styling chairs"
           className="w-full h-full object-cover"
         />
-        {/* Dark overlay for better text contrast */}
-        <div className="absolute inset-0 bg-black/40 lg:bg-gradient-to-r lg:from-black/60 lg:via-black/30 lg:to-transparent"></div>
       </div>
 
       {/* Content */}
