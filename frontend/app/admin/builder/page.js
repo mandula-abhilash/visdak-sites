@@ -237,6 +237,40 @@ function getDefaultProps(sectionType) {
         secondary: { text: "Learn More", href: "#about" },
       },
     },
+    "hero-basic": {
+      title: "Welcome to Our Website",
+      subtitle: "Create amazing experiences with our services",
+      image:
+        "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
+      cta: {
+        primary: { text: "Get Started", href: "#contact" },
+        secondary: { text: "Learn More", href: "#about" },
+      },
+    },
+    "hero-split": {
+      title: "Transform Your Business",
+      subtitle: "Innovative solutions for the modern enterprise",
+      image:
+        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+      cta: {
+        primary: { text: "Get Started", href: "#contact" },
+        secondary: { text: "Learn More", href: "#about" },
+      },
+    },
+    "hero-modern": {
+      title: "Supercharge your web app",
+      subtitle:
+        "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+      announcement: {
+        badge: "What's new",
+        text: "Just shipped v0.1.0",
+      },
+      logo: "https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600",
+      cta: {
+        primary: { text: "Documentation", href: "#docs" },
+        secondary: { text: "View on GitHub", href: "#github" },
+      },
+    },
     about: {
       title: "About Us",
       description:
