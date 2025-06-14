@@ -7,7 +7,7 @@ export default function Navigation({ business }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll effect
+  // Handle scroll effect - this is acceptable as it's a window event
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -16,23 +16,16 @@ export default function Navigation({ business }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu when clicking outside or on link
+  // Handle body scroll lock when menu is open - React way
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isMenuOpen && !event.target.closest(".mobile-menu-container")) {
-        setIsMenuOpen(false);
-      }
-    };
-
     if (isMenuOpen) {
-      document.addEventListener("click", handleClickOutside);
-      document.body.style.overflow = "hidden"; // Prevent background scroll
+      document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
 
+    // Cleanup on unmount
     return () => {
-      document.removeEventListener("click", handleClickOutside);
       document.body.style.overflow = "unset";
     };
   }, [isMenuOpen]);
@@ -47,6 +40,19 @@ export default function Navigation({ business }) {
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleBackdropClick = () => {
+    setIsMenuOpen(false);
+  };
+
+  // Prevent event bubbling when clicking inside menu
+  const handleMenuClick = (e) => {
+    e.stopPropagation();
   };
 
   return (
@@ -118,8 +124,8 @@ export default function Navigation({ business }) {
 
               {/* Hamburger menu */}
               <button
-                className="mobile-menu-container p-2 rounded-lg text-gray-700 hover:text-yellow-600 hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-600"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 rounded-lg text-gray-700 hover:text-yellow-600 hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+                onClick={handleMenuToggle}
                 aria-label="Toggle menu"
                 aria-expanded={isMenuOpen}
               >
@@ -134,17 +140,20 @@ export default function Navigation({ business }) {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - React way with conditional rendering */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          {/* Backdrop */}
+          {/* Backdrop - onClick handler instead of event listener */}
           <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleBackdropClick}
           />
 
-          {/* Menu Panel */}
-          <div className="mobile-menu-container fixed top-16 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ease-out overflow-hidden">
+          {/* Menu Panel - stopPropagation to prevent backdrop click */}
+          <div
+            className="fixed top-16 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ease-out overflow-hidden"
+            onClick={handleMenuClick}
+          >
             <div className="flex flex-col h-full">
               {/* Menu Header */}
               <div className="px-6 py-4 border-b border-gray-200">
