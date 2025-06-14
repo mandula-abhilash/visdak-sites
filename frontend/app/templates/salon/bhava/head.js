@@ -1,15 +1,16 @@
 import { UniversalThemeHead } from "@/lib/universal-theme";
 
 export default function Head({ business, pathname }) {
-  // Get route-specific SEO if available, otherwise use default
   const routeSeo = business.seo.routes?.[pathname] || business.seo;
   const title = routeSeo.title || business.seo.title;
   const description = routeSeo.description || business.seo.description;
 
   return (
     <>
-      {/* Universal Theme Injection - MUST be first to prevent flicker */}
-      <UniversalThemeHead themeName={business.themeName} />
+      <UniversalThemeHead
+        themeName={business.themeName}
+        enableAntiFlicker={true}
+      />
 
       <title>{title}</title>
       <meta name="description" content={description} />

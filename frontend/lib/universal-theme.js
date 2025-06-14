@@ -1,5 +1,5 @@
 /**
- * Universal Theme System for All Templates
+ * Universal Theme System for All Templates - Anti-Flicker Version
  * Provides server-side theme injection and client-side theme management
  */
 
@@ -338,12 +338,138 @@ export function createCustomTheme(themeName, colors) {
 }
 
 /**
- * Universal Theme Head Component
+ * ANTI-FLICKER: Inline Critical CSS for immediate theme application
+ * @param {string} themeName - The theme name to apply
+ * @returns {string} Inline CSS string for immediate injection
+ */
+export function getCriticalThemeCSS(themeName = "golden") {
+  const themeCSS = generateThemeCSS(themeName);
+  return `
+    <style id="critical-theme-css">
+      :root { ${themeCSS} }
+      html { ${themeCSS} }
+      body { 
+        background-color: var(--template-background-light, #FEF7E0);
+        color: var(--template-dark, #1F2937);
+        transition: none !important;
+      }
+      * { 
+        transition: none !important;
+        animation-duration: 0s !important;
+        animation-delay: 0s !important;
+      }
+    </style>
+  `;
+}
+
+/**
+ * ANTI-FLICKER: Enable transitions after page load
+ * @returns {string} CSS to re-enable transitions
+ */
+export function getTransitionEnableCSS() {
+  return `
+    <style id="enable-transitions">
+      body * { 
+        transition: all 0.3s ease !important;
+      }
+      body {
+        transition: background-color 0.3s ease, color 0.3s ease !important;
+      }
+    </style>
+  `;
+}
+
+/**
+ * Universal Theme Head Component - Anti-Flicker Version
  * Use this in any template's head.js file for automatic theme injection
  * @param {string} themeName - The theme name to apply
+ * @param {boolean} enableAntiFlicker - Enable anti-flicker mode (default: true)
  * @returns {JSX.Element} Style element with theme CSS
  */
-export function UniversalThemeHead({ themeName = "golden" }) {
+export function UniversalThemeHead({
+  themeName = "golden",
+  enableAntiFlicker = true,
+}) {
+  if (enableAntiFlicker) {
+    return (
+      <>
+        <style
+          id="critical-theme-styles"
+          suppressHydrationWarning={true}
+          dangerouslySetInnerHTML={{
+            __html: `
+              /* CRITICAL: Theme variables must be available immediately */
+              :root {
+                ${generateThemeCSS(themeName)}
+              }
+              
+              html {
+                ${generateThemeCSS(themeName)}
+              }
+
+              /* ANTI-FLICKER: Disable transitions during initial load */
+              body {
+                background-color: var(--template-background-light, #FEF7E0);
+                color: var(--template-dark, #1F2937);
+                transition: none !important;
+                visibility: hidden;
+              }
+              
+              body * {
+                transition: none !important;
+                animation-duration: 0s !important;
+                animation-delay: 0s !important;
+              }
+
+              /* Show body after theme is applied */
+              body.theme-ready {
+                visibility: visible !important;
+              }
+
+              /* Re-enable transitions after theme loads */
+              body.transitions-enabled * {
+                transition: all 0.3s ease !important;
+              }
+              
+              body.transitions-enabled {
+                transition: background-color 0.3s ease, color 0.3s ease !important;
+              }
+            `,
+          }}
+        />
+        <script
+          suppressHydrationWarning={true}
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Immediately show the body and enable transitions
+                document.addEventListener('DOMContentLoaded', function() {
+                  document.body.classList.add('theme-ready');
+                  
+                  // Enable transitions after a short delay to prevent flicker
+                  setTimeout(function() {
+                    document.body.classList.add('transitions-enabled');
+                  }, 50);
+                });
+                
+                // Fallback for immediate execution if DOM is already loaded
+                if (document.readyState === 'loading') {
+                  // Wait for DOMContentLoaded
+                } else {
+                  document.body.classList.add('theme-ready');
+                  setTimeout(function() {
+                    document.body.classList.add('transitions-enabled');
+                  }, 50);
+                }
+              })();
+            `,
+          }}
+        />
+      </>
+    );
+  }
+
+  // Original version without anti-flicker
   return (
     <style
       suppressHydrationWarning={true}
@@ -361,4 +487,26 @@ export function UniversalThemeHead({ themeName = "golden" }) {
       }}
     />
   );
+}
+
+/**
+ * Theme Loader Component - Use in your main component
+ * This ensures the theme is applied before any content renders
+ */
+export function ThemeLoader({ themeName = "golden", children }) {
+  if (typeof window !== "undefined") {
+    // Client-side: Apply theme immediately
+    React.useLayoutEffect(() => {
+      applyTemplateTheme(themeName);
+      document.body.classList.add("theme-ready");
+
+      const timer = setTimeout(() => {
+        document.body.classList.add("transitions-enabled");
+      }, 50);
+
+      return () => clearTimeout(timer);
+    }, [themeName]);
+  }
+
+  return children;
 }
