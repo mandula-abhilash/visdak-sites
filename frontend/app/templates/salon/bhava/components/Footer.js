@@ -10,9 +10,17 @@ export default function Footer({ business }) {
           <div className="col-span-2">
             <div className="flex items-center mb-4">
               <Scissors className="h-8 w-8 text-[var(--template-accent)] mr-2" />
-              <span className="text-2xl font-bold">{business.name}</span>
+              <span
+                className="text-2xl font-bold"
+                style={{ fontFamily: "var(--template-font-heading)" }}
+              >
+                {business.name}
+              </span>
             </div>
-            <p className="text-gray-300 mb-4 max-w-md">
+            <p
+              className="text-gray-300 mb-4 max-w-md"
+              style={{ fontFamily: "var(--template-font-body)" }}
+            >
               {business.description}
             </p>
             <div className="flex space-x-4">
@@ -38,12 +46,18 @@ export default function Footer({ business }) {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3
+              className="text-lg font-semibold mb-4"
+              style={{ fontFamily: "var(--template-font-heading)" }}
+            >
+              Quick Links
+            </h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#home"
                   className="text-gray-300 hover:text-[var(--template-accent)] transition-colors"
+                  style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   Home
                 </a>
@@ -52,6 +66,7 @@ export default function Footer({ business }) {
                 <a
                   href="#about"
                   className="text-gray-300 hover:text-[var(--template-accent)] transition-colors"
+                  style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   About Us
                 </a>
@@ -60,6 +75,7 @@ export default function Footer({ business }) {
                 <a
                   href="#services"
                   className="text-gray-300 hover:text-[var(--template-accent)] transition-colors"
+                  style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   Services
                 </a>
@@ -68,6 +84,7 @@ export default function Footer({ business }) {
                 <a
                   href="#gallery"
                   className="text-gray-300 hover:text-[var(--template-accent)] transition-colors"
+                  style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   Gallery
                 </a>
@@ -76,6 +93,7 @@ export default function Footer({ business }) {
                 <a
                   href="#contact"
                   className="text-gray-300 hover:text-[var(--template-accent)] transition-colors"
+                  style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   Contact
                 </a>
@@ -84,29 +102,62 @@ export default function Footer({ business }) {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3
+              className="text-lg font-semibold mb-4"
+              style={{ fontFamily: "var(--template-font-heading)" }}
+            >
+              Services
+            </h3>
             <ul className="space-y-2">
               <li>
-                <span className="text-gray-300">Hair Cutting</span>
+                <span
+                  className="text-gray-300"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  Hair Cutting
+                </span>
               </li>
               <li>
-                <span className="text-gray-300">Hair Coloring</span>
+                <span
+                  className="text-gray-300"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  Hair Coloring
+                </span>
               </li>
               <li>
-                <span className="text-gray-300">Hair Treatments</span>
+                <span
+                  className="text-gray-300"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  Hair Treatments
+                </span>
               </li>
               <li>
-                <span className="text-gray-300">Men's Grooming</span>
+                <span
+                  className="text-gray-300"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  Men's Grooming
+                </span>
               </li>
               <li>
-                <span className="text-gray-300">Hair Styling</span>
+                <span
+                  className="text-gray-300"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  Hair Styling
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-300">
+          <p
+            className="text-gray-300"
+            style={{ fontFamily: "var(--template-font-body)" }}
+          >
             &copy; 2024 {business.name}. All rights reserved. |
             <a
               href="#"

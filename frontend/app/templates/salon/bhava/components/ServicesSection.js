@@ -55,10 +55,16 @@ export default function ServicesSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fadeIn">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2
+            className="text-4xl font-bold text-gray-900 mb-4"
+            style={{ fontFamily: "var(--template-font-heading)" }}
+          >
             Our Premium Services
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p
+            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            style={{ fontFamily: "var(--template-font-body)" }}
+          >
             Discover our comprehensive range of professional beauty and grooming
             services designed for both men and women
           </p>
@@ -75,11 +81,22 @@ export default function ServicesSection() {
                 <div className="w-16 h-16 bg-[var(--template-accent-light)] rounded-lg flex items-center justify-center mb-6">
                   <IconComponent className="h-8 w-8 text-[var(--template-accent)]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3
+                  className="text-xl font-bold text-gray-900 mb-4"
+                  style={{ fontFamily: "var(--template-font-heading)" }}
+                >
                   {service.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <div className="text-[var(--template-accent)] font-semibold">
+                <p
+                  className="text-gray-600 mb-4"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  {service.description}
+                </p>
+                <div
+                  className="text-[var(--template-accent)] font-semibold"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
                   {service.price}
                 </div>
               </div>

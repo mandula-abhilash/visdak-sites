@@ -11,8 +11,16 @@ export default function ContactSection({ business }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fadeIn">
-            <h2 className="text-4xl font-bold mb-6">Get In Touch</h2>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+            <h2
+              className="text-4xl font-bold mb-6"
+              style={{ fontFamily: "var(--template-font-heading)" }}
+            >
+              Get In Touch
+            </h2>
+            <p
+              className="text-xl text-gray-300 mb-8 leading-relaxed"
+              style={{ fontFamily: "var(--template-font-body)" }}
+            >
               Ready to transform your look? Contact us today to schedule your
               appointment and experience the luxury of our premium salon
               services.
@@ -24,8 +32,16 @@ export default function ContactSection({ business }) {
                   <MapPin className="h-6 w-6 text-[var(--template-accent)]" />
                 </div>
                 <div>
-                  <div className="font-semibold">Visit Our Salon</div>
-                  <div className="text-gray-300">
+                  <div
+                    className="font-semibold"
+                    style={{ fontFamily: "var(--template-font-heading)" }}
+                  >
+                    Visit Our Salon
+                  </div>
+                  <div
+                    className="text-gray-300"
+                    style={{ fontFamily: "var(--template-font-body)" }}
+                  >
                     {business.contact.address}
                   </div>
                 </div>
@@ -36,8 +52,18 @@ export default function ContactSection({ business }) {
                   <Phone className="h-6 w-6 text-[var(--template-accent)]" />
                 </div>
                 <div>
-                  <div className="font-semibold">Call Us</div>
-                  <div className="text-gray-300">{business.contact.phone}</div>
+                  <div
+                    className="font-semibold"
+                    style={{ fontFamily: "var(--template-font-heading)" }}
+                  >
+                    Call Us
+                  </div>
+                  <div
+                    className="text-gray-300"
+                    style={{ fontFamily: "var(--template-font-body)" }}
+                  >
+                    {business.contact.phone}
+                  </div>
                 </div>
               </div>
 
@@ -46,8 +72,16 @@ export default function ContactSection({ business }) {
                   <Clock className="h-6 w-6 text-[var(--template-accent)]" />
                 </div>
                 <div>
-                  <div className="font-semibold">Opening Hours</div>
-                  <div className="text-gray-300">
+                  <div
+                    className="font-semibold"
+                    style={{ fontFamily: "var(--template-font-heading)" }}
+                  >
+                    Opening Hours
+                  </div>
+                  <div
+                    className="text-gray-300"
+                    style={{ fontFamily: "var(--template-font-body)" }}
+                  >
                     Mon-Sat: 9AM-8PM | Sun: 10AM-6PM
                   </div>
                 </div>
@@ -63,6 +97,7 @@ export default function ContactSection({ business }) {
                   business.name
                 }`}
                 className="inline-flex items-center bg-[var(--template-success)] hover:bg-[var(--template-success-hover)] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                style={{ fontFamily: "var(--template-font-body)" }}
               >
                 <MessageCircle className="h-6 w-6 mr-3" />
                 Book via WhatsApp

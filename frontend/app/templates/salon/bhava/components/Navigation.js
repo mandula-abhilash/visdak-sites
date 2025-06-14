@@ -80,7 +80,10 @@ export default function Navigation({ business }) {
               className="flex items-center flex-shrink-0 min-w-0 group cursor-pointer"
             >
               <Scissors className="h-6 w-6 lg:h-8 lg:w-8 text-[var(--template-accent)] mr-2 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
-              <span className="text-lg lg:text-xl font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-[var(--template-accent)]">
+              <span
+                className="text-lg lg:text-xl font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-[var(--template-accent)]"
+                style={{ fontFamily: "var(--template-font-heading)" }}
+              >
                 {business.name}
               </span>
             </a>
@@ -92,6 +95,7 @@ export default function Navigation({ business }) {
                   key={link.name}
                   href={link.href}
                   className="text-gray-700 hover:text-[var(--template-accent)] transition-colors duration-200 font-medium whitespace-nowrap"
+                  style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   {link.name}
                 </a>
@@ -103,6 +107,7 @@ export default function Navigation({ business }) {
               <a
                 href={`tel:${business.contact.phone}`}
                 className="flex items-center text-gray-700 hover:text-[var(--template-accent)] transition-colors duration-200"
+                style={{ fontFamily: "var(--template-font-body)" }}
               >
                 <Phone className="h-4 w-4 mr-2" />
                 <span className="font-medium">Call Now</span>
@@ -113,6 +118,7 @@ export default function Navigation({ business }) {
                   ""
                 )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
                 className="bg-[var(--template-success)] hover:bg-[var(--template-success-hover)] text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center font-medium"
+                style={{ fontFamily: "var(--template-font-body)" }}
               >
                 <MessageCircle className="h-4 w-4 mr-2" />
                 WhatsApp
@@ -174,7 +180,10 @@ export default function Navigation({ business }) {
                   className="flex items-center group cursor-pointer"
                 >
                   <Scissors className="h-6 w-6 text-[var(--template-accent)] mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
-                  <span className="text-lg font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-[var(--template-accent)]">
+                  <span
+                    className="text-lg font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-[var(--template-accent)]"
+                    style={{ fontFamily: "var(--template-font-heading)" }}
+                  >
                     {business.name}
                   </span>
                 </a>
@@ -189,6 +198,7 @@ export default function Navigation({ business }) {
                       href={link.href}
                       onClick={handleLinkClick}
                       className="block px-4 py-3 text-lg font-medium text-gray-700 hover:text-[var(--template-accent)] hover:bg-[var(--template-accent-light)] rounded-lg transition-colors duration-200"
+                      style={{ fontFamily: "var(--template-font-body)" }}
                     >
                       {link.name}
                     </a>
@@ -202,6 +212,7 @@ export default function Navigation({ business }) {
                   href={`tel:${business.contact.phone}`}
                   onClick={handleLinkClick}
                   className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium text-gray-700 hover:text-[var(--template-accent)] hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                  style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   <Phone className="h-5 w-5 mr-3 flex-shrink-0" />
                   <span className="truncate">
@@ -216,6 +227,7 @@ export default function Navigation({ business }) {
                   )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
                   onClick={handleLinkClick}
                   className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium bg-[var(--template-success)] hover:bg-[var(--template-success-hover)] text-white rounded-lg transition-colors duration-200"
+                  style={{ fontFamily: "var(--template-font-body)" }}
                 >
                   <MessageCircle className="h-5 w-5 mr-3 flex-shrink-0" />
                   <span className="truncate">Book via WhatsApp</span>

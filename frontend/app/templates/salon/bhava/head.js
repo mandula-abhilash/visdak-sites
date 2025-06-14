@@ -1,4 +1,5 @@
 import { UniversalThemeHead } from "@/lib/universal-theme";
+import { UniversalFontHead } from "@/lib/universal-fonts";
 
 export default function Head({ business, pathname }) {
   const routeSeo = business.seo.routes?.[pathname] || business.seo;
@@ -11,6 +12,8 @@ export default function Head({ business, pathname }) {
         themeName={business.themeName}
         enableAntiFlicker={true}
       />
+
+      <UniversalFontHead fontName={business.fontName || "elegant"} />
 
       <title>{title}</title>
       <meta name="description" content={description} />

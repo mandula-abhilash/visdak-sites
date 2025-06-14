@@ -31,10 +31,16 @@ export default function TestimonialsSection() {
     <section className="py-20 bg-[var(--template-background-light)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fadeIn">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2
+            className="text-4xl font-bold text-gray-900 mb-4"
+            style={{ fontFamily: "var(--template-font-heading)" }}
+          >
             What Our Clients Say
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p
+            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            style={{ fontFamily: "var(--template-font-body)" }}
+          >
             Don't just take our word for it - hear from our satisfied clients
           </p>
         </div>
@@ -52,7 +58,12 @@ export default function TestimonialsSection() {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
+              <p
+                className="text-gray-600 mb-6 italic"
+                style={{ fontFamily: "var(--template-font-body)" }}
+              >
+                "{testimonial.text}"
+              </p>
               <div className="flex items-center">
                 <img
                   src={testimonial.image}
@@ -60,10 +71,16 @@ export default function TestimonialsSection() {
                   className="w-12 h-12 rounded-full mr-4 object-cover"
                 />
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div
+                    className="font-semibold text-gray-900"
+                    style={{ fontFamily: "var(--template-font-heading)" }}
+                  >
                     {testimonial.name}
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div
+                    className="text-sm text-gray-500"
+                    style={{ fontFamily: "var(--template-font-body)" }}
+                  >
                     {testimonial.role}
                   </div>
                 </div>

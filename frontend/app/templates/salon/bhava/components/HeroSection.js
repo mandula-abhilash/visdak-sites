@@ -22,13 +22,19 @@ export default function HeroSection({ business }) {
           <div className="lg:hidden absolute inset-0 bg-black/50 rounded-lg -mx-4 -my-8"></div>
 
           <div className="relative z-10 lg:bg-white/95 lg:backdrop-blur-sm lg:p-8 lg:rounded-xl lg:shadow-2xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white lg:text-gray-900 mb-6 leading-tight">
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white lg:text-gray-900 mb-6 leading-tight"
+              style={{ fontFamily: "var(--template-font-heading)" }}
+            >
               Redefine Your
               <span className="text-[var(--template-accent-light)] lg:text-[var(--template-accent)] block">
                 Beauty
               </span>
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-100 lg:text-gray-600 mb-8 leading-relaxed">
+            <p
+              className="text-lg md:text-xl lg:text-2xl text-gray-100 lg:text-gray-600 mb-8 leading-relaxed"
+              style={{ fontFamily: "var(--template-font-body)" }}
+            >
               Experience premium unisex salon services where style meets
               sophistication. Professional treatments for both men and women.
             </p>
@@ -36,6 +42,7 @@ export default function HeroSection({ business }) {
               <a
                 href="#services"
                 className="bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
+                style={{ fontFamily: "var(--template-font-body)" }}
               >
                 Explore Services
               </a>
@@ -45,6 +52,7 @@ export default function HeroSection({ business }) {
                   ""
                 )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
                 className="border-2 border-[var(--template-accent-light)] lg:border-[var(--template-accent)] text-[var(--template-accent-light)] lg:text-[var(--template-accent)] hover:bg-[var(--template-accent-light)] lg:hover:bg-[var(--template-accent)] hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 text-center"
+                style={{ fontFamily: "var(--template-font-body)" }}
               >
                 Book Appointment
               </a>
