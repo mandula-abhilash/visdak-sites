@@ -34,7 +34,7 @@ export default function Bhava({ business }) {
   }, []);
 
   return (
-    <div className="font-sans antialiased">
+    <div className="font-sans antialiased overflow-x-hidden">
       <Navigation business={business} />
       <HeroSection business={business} />
       <AboutSection business={business} />
