@@ -1,6 +1,9 @@
-// Universal Template Theme System
-// Generic CSS variables that can be used across all templates
+/**
+ * Universal Theme System for All Templates
+ * Provides server-side theme injection and client-side theme management
+ */
 
+// Universal Template Theme Definitions
 export const templateThemes = {
   // Golden/Yellow Theme (Default)
   golden: {
@@ -229,13 +232,48 @@ export const templateThemes = {
     "--template-info": "#3B82F6",
     "--template-info-hover": "#2563EB",
   },
+
+  // Gold Theme (alias for golden)
+  gold: {
+    "--template-primary": "#B7935B",
+    "--template-secondary": "#8E793E",
+    "--template-accent": "#D4AF37",
+    "--template-accent-light": "#F4E4BC",
+    "--template-accent-hover": "#B8941F",
+    "--template-dark": "#1F2937",
+    "--template-background-light": "#FEF7E0",
+    "--template-success": "#10B981",
+    "--template-success-hover": "#059669",
+    "--template-error": "#EF4444",
+    "--template-error-hover": "#DC2626",
+    "--template-warning": "#F59E0B",
+    "--template-warning-hover": "#D97706",
+    "--template-info": "#3B82F6",
+    "--template-info-hover": "#2563EB",
+  },
 };
 
 /**
- * Apply a theme to any template
+ * Generate CSS string for a theme (server-side safe)
+ * @param {string} themeName - The name of the theme to generate CSS for
+ * @returns {string} CSS string with theme variables
+ */
+export function generateThemeCSS(themeName = "golden") {
+  const theme = templateThemes[themeName] || templateThemes.golden;
+
+  return Object.entries(theme)
+    .map(([property, value]) => `${property}: ${value};`)
+    .join("\n            ");
+}
+
+/**
+ * Apply a theme to any template (client-side only)
  * @param {string} themeName - The name of the theme to apply
  */
 export function applyTemplateTheme(themeName = "golden") {
+  // Only run on client side
+  if (typeof window === "undefined") return;
+
   const theme = templateThemes[themeName];
 
   if (!theme) {
@@ -257,6 +295,8 @@ export function applyTemplateTheme(themeName = "golden") {
  * Remove all template theme variables from the document
  */
 export function removeTemplateTheme() {
+  if (typeof window === "undefined") return;
+
   const root = document.documentElement;
   const themeKeys = Object.keys(templateThemes.golden); // Use golden as reference for all keys
 
@@ -295,4 +335,24 @@ export function createCustomTheme(themeName, colors) {
     ...defaultTheme,
     ...colors,
   };
+}
+
+/**
+ * Universal Theme Head Component
+ * Use this in any template's head.js file for automatic theme injection
+ * @param {string} themeName - The theme name to apply
+ * @returns {JSX.Element} Style element with theme CSS
+ */
+export function UniversalThemeHead({ themeName = "golden" }) {
+  return (
+    <style
+      dangerouslySetInnerHTML={{
+        __html: `
+        :root {
+          ${generateThemeCSS(themeName)}
+        }
+      `,
+      }}
+    />
+  );
 }

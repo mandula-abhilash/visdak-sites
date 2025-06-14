@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { applyTemplateTheme } from "@/lib/template-themes";
+import UniversalThemeProvider from "@/components/UniversalThemeProvider";
 import Navigation from "./components/Navigation";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
@@ -34,28 +34,18 @@ export default function Bhava({ business }) {
     return () => observer.disconnect();
   }, []);
 
-  // Apply theme based on business theme or default to golden
-  useEffect(() => {
-    const themeName = business.themeName;
-    applyTemplateTheme(themeName);
-
-    // Cleanup function to remove theme variables when component unmounts
-    return () => {
-      // Note: We don't remove theme variables on unmount as they might be needed
-      // for other components. Theme cleanup should be handled at the app level.
-    };
-  }, [business.themeName]);
-
   return (
-    <div className="font-sans antialiased overflow-x-hidden">
-      <Navigation business={business} />
-      <HeroSection business={business} />
-      <AboutSection business={business} />
-      <ServicesSection />
-      <GallerySection />
-      <TestimonialsSection />
-      <ContactSection business={business} />
-      <Footer business={business} />
-    </div>
+    <UniversalThemeProvider business={business}>
+      <div className="font-sans antialiased overflow-x-hidden">
+        <Navigation business={business} />
+        <HeroSection business={business} />
+        <AboutSection business={business} />
+        <ServicesSection />
+        <GallerySection />
+        <TestimonialsSection />
+        <ContactSection business={business} />
+        <Footer business={business} />
+      </div>
+    </UniversalThemeProvider>
   );
 }

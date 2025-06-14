@@ -1,3 +1,5 @@
+import { UniversalThemeHead } from "@/lib/universal-theme";
+
 export default function Head({ business, pathname }) {
   // Get route-specific SEO if available, otherwise use default
   const routeSeo = business.seo.routes?.[pathname] || business.seo;
@@ -17,6 +19,9 @@ export default function Head({ business, pathname }) {
         href={`https://${business.subdomain}.yourdomain.com`}
       />
       <link rel="icon" href={business.seo.favicon} />
+
+      {/* Universal Theme Injection - Works for ALL templates */}
+      <UniversalThemeHead themeName={business.themeName} />
     </>
   );
 }
