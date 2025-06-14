@@ -36,7 +36,7 @@ export default function Bhava({ business }) {
 
   // Apply theme based on business theme or default to golden
   useEffect(() => {
-    const themeName = business.themeName || "golden";
+    const themeName = business.themeName;
     applyTemplateTheme(themeName);
 
     // Cleanup function to remove theme variables when component unmounts

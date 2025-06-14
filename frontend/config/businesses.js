@@ -929,7 +929,7 @@ const businesses = {
     niche: "salon",
     template: "bhava",
     layout: "stacked",
-    themeName: "gold",
+    themeName: "copper",
     theme: getTheme("gold"),
     description:
       "Premier unisex salon offering professional beauty and grooming services in a luxurious environment. Your style, our passion.",
