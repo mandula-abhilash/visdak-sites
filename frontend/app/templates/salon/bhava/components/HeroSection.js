@@ -4,7 +4,7 @@ export default function HeroSection({ business }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-white pt-16"
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-white mt-16"
     >
       {/* Background Image */}
       <div className="absolute right-0 top-0 w-full lg:w-1/2 h-full">
