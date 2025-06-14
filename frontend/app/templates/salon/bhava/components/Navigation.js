@@ -55,6 +55,13 @@ export default function Navigation({ business }) {
     e.stopPropagation();
   };
 
+  const handleLogoClick = () => {
+    // Close mobile menu if open
+    setIsMenuOpen(false);
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       <nav
@@ -66,13 +73,17 @@ export default function Navigation({ business }) {
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20 w-full">
-            {/* Logo */}
-            <div className="flex items-center flex-shrink-0 min-w-0">
-              <Scissors className="h-6 w-6 lg:h-8 lg:w-8 text-yellow-600 mr-2 flex-shrink-0" />
-              <span className="text-lg lg:text-xl font-bold text-gray-900 truncate">
+            {/* Logo - Now clickable */}
+            <a
+              href="#home"
+              onClick={handleLogoClick}
+              className="flex items-center flex-shrink-0 min-w-0 group cursor-pointer"
+            >
+              <Scissors className="h-6 w-6 lg:h-8 lg:w-8 text-yellow-600 mr-2 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
+              <span className="text-lg lg:text-xl font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-yellow-600">
                 {business.name}
               </span>
-            </div>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
@@ -155,14 +166,18 @@ export default function Navigation({ business }) {
             onClick={handleMenuClick}
           >
             <div className="flex flex-col h-full">
-              {/* Menu Header */}
+              {/* Menu Header - Also clickable */}
               <div className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center">
-                  <Scissors className="h-6 w-6 text-yellow-600 mr-3 flex-shrink-0" />
-                  <span className="text-lg font-bold text-gray-900 truncate">
+                <a
+                  href="#home"
+                  onClick={handleLogoClick}
+                  className="flex items-center group cursor-pointer"
+                >
+                  <Scissors className="h-6 w-6 text-yellow-600 mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
+                  <span className="text-lg font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-yellow-600">
                     {business.name}
                   </span>
-                </div>
+                </a>
               </div>
 
               {/* Navigation Links */}
