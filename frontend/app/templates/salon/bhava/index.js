@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { applyTemplateTheme } from "@/lib/template-themes";
 import Navigation from "./components/Navigation";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
@@ -33,35 +34,17 @@ export default function Bhava({ business }) {
     return () => observer.disconnect();
   }, []);
 
-  // Set CSS custom properties for theme colors
+  // Apply theme based on business theme or default to golden
   useEffect(() => {
-    const root = document.documentElement;
+    const themeName = business.themeName || "golden";
+    applyTemplateTheme(themeName);
 
-    // Default Bhava theme colors (golden/yellow theme)
-    const themeColors = {
-      "--bhava-primary": "#B7935B",
-      "--bhava-secondary": "#8E793E",
-      "--bhava-accent": "#D4AF37",
-      "--bhava-accent-light": "#F4E4BC",
-      "--bhava-accent-hover": "#B8941F",
-      "--bhava-dark": "#1F2937",
-      "--bhava-background-light": "#FEF7E0",
-      "--bhava-success": "#10B981",
-      "--bhava-success-hover": "#059669",
-    };
-
-    // Apply theme colors to CSS custom properties
-    Object.entries(themeColors).forEach(([property, value]) => {
-      root.style.setProperty(property, value);
-    });
-
-    // Cleanup function to remove custom properties
+    // Cleanup function to remove theme variables when component unmounts
     return () => {
-      Object.keys(themeColors).forEach((property) => {
-        root.style.removeProperty(property);
-      });
+      // Note: We don't remove theme variables on unmount as they might be needed
+      // for other components. Theme cleanup should be handled at the app level.
     };
-  }, []);
+  }, [business.themeName]);
 
   return (
     <div className="font-sans antialiased overflow-x-hidden">

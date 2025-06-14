@@ -28,7 +28,7 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-20 bg-[var(--bhava-background-light)]">
+    <section className="py-20 bg-[var(--template-background-light)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fadeIn">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
               className="bg-white rounded-xl p-8 shadow-lg hover:scale-105 transition-transform duration-300"
             >
               <div className="flex items-center mb-4">
-                <div className="flex text-[var(--bhava-accent)]">
+                <div className="flex text-[var(--template-accent)]">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
