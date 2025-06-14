@@ -21,42 +21,19 @@ export default function FallbackPage() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <DemoCard
-              title="Salon & Beauty"
-              description="Elegant template for beauty businesses"
-              link="http://kiransalon.localhost:3000"
+              title="Be On Mirrors Salon"
+              description="Premium unisex salon template"
+              link="http://be-on-mirrors.localhost:3000"
             />
             <DemoCard
-              title="Plumbing Services"
-              description="Professional template for plumbers"
-              link="http://ramplumber.localhost:3000"
+              title="Coming Soon"
+              description="More templates coming soon"
+              disabled={true}
             />
             <DemoCard
-              title="Curtains & Blinds"
-              description="Premium window treatments business"
-              link="http://elegantdrapes.localhost:3000"
-            />
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            Section-Based Demos
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <DemoCard
-              title="Modern Business"
-              description="Built with modular sections"
-              link="http://modern-business.localhost:3000"
-            />
-            <DemoCard
-              title="Professional Services"
-              description="Component-based design"
-              link="http://professional.localhost:3000"
-            />
-            <DemoCard
-              title="Beauty Parlour"
-              description="Luxury beauty services"
-              link="http://lavanyabeauty.localhost:3000"
+              title="Coming Soon"
+              description="More templates coming soon"
+              disabled={true}
             />
           </div>
         </div>

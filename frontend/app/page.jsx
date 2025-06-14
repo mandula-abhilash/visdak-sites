@@ -1,11 +1,26 @@
-import { getBusinessBySubdomain } from "@/config/businesses";
+import { notFound } from "next/navigation";
+import { businessAPI } from "@/lib/api";
+import { getTheme } from "@/config/themes";
 import { getLayout } from "@/lib/layout-map";
 import { getSection } from "@/lib/section-map";
-import { notFound } from "next/navigation";
 
 export default async function Page({ searchParams }) {
   const subdomain = searchParams.subdomain;
-  const business = getBusinessBySubdomain(subdomain);
+
+  let business;
+  try {
+    const response = await businessAPI.getBySubdomain(subdomain);
+    if (response.success) {
+      business = response.data;
+      // Apply theme
+      business.theme = getTheme(business.themeName);
+    } else {
+      business = null;
+    }
+  } catch (error) {
+    console.error("Error fetching business:", error);
+    business = null;
+  }
 
   // If no business found, show 404
   if (!business) {

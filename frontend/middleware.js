@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getBusinessBySubdomain } from "./config/businesses";
+import { businessAPI } from "./lib/api";
 
 export function middleware(request) {
   // Get hostname (e.g. vercel.app, localhost:3000)
@@ -31,14 +31,6 @@ export function middleware(request) {
 
   // For root localhost without subdomain in development, show the fallback page
   if (hostname === "localhost:3000" || hostname === "localhost") {
-    return NextResponse.rewrite(new URL("/fallback", request.url));
-  }
-
-  // Check if the business exists
-  const business = getBusinessBySubdomain(currentHost);
-
-  // If business doesn't exist, show the fallback page
-  if (!business) {
     return NextResponse.rewrite(new URL("/fallback", request.url));
   }
 

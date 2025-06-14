@@ -6,8 +6,11 @@ import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 
-import visdakSesamModule from "visdak-sesam";
-import visdakWalletRoutes, { handleStripeWebhook } from "visdak-wallet";
+// import visdakSesamModule from "visdak-sesam";
+// import visdakWalletRoutes, { handleStripeWebhook } from "visdak-wallet";
+
+// Import business routes
+import businessRoutes from "./routes/businesses.js";
 
 const startServer = async () => {
   const app = express();
@@ -15,7 +18,7 @@ const startServer = async () => {
   // CORS configuration
   app.use(
     cors({
-      origin: process.env.CLIENT_URL,
+      origin: process.env.CLIENT_URL || "http://localhost:3000",
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
@@ -33,11 +36,11 @@ const startServer = async () => {
    * @desc Handle Stripe webhook events
    * @access Public
    */
-  app.post(
-    "/api/checkout/webhook",
-    bodyParser.raw({ type: "application/json" }),
-    handleStripeWebhook
-  );
+  // app.post(
+  //   "/api/checkout/webhook",
+  //   bodyParser.raw({ type: "application/json" }),
+  //   handleStripeWebhook
+  // );
 
   app.use(express.json());
   app.use(morgan("combined")); // Logging HTTP requests
@@ -47,25 +50,33 @@ const startServer = async () => {
 
   try {
     // Initialize the visdak-sesam auth module
-    const { authRoutes, middleware } = visdakSesamModule();
+    // const { authRoutes, middleware } = visdakSesamModule();
 
     // Mount the auth router
-    app.use("/api/auth", authRoutes);
+    // app.use("/api/auth", authRoutes);
 
-    const {
-      planRoutes,
-      walletRoutes,
-      subscriptionRoutes,
-      transactionRoutes,
-      checkoutRoutes,
-    } = visdakWalletRoutes(middleware);
+    // const {
+    //   planRoutes,
+    //   walletRoutes,
+    //   subscriptionRoutes,
+    //   transactionRoutes,
+    //   checkoutRoutes,
+    // } = visdakWalletRoutes(middleware);
 
-    // Mount the visdak wallet routes
-    app.use("/api/plans", planRoutes);
-    app.use("/api/wallet", walletRoutes);
-    app.use("/api/subscriptions", subscriptionRoutes);
-    app.use("/api/transactions", transactionRoutes);
-    app.use("/api/checkout", checkoutRoutes);
+    // // Mount the visdak wallet routes
+    // app.use("/api/plans", planRoutes);
+    // app.use("/api/wallet", walletRoutes);
+    // app.use("/api/subscriptions", subscriptionRoutes);
+    // app.use("/api/transactions", transactionRoutes);
+    // app.use("/api/checkout", checkoutRoutes);
+
+    // Mount business routes
+    app.use("/api/businesses", businessRoutes);
+
+    // Health check endpoint
+    app.get("/api/health", (req, res) => {
+      res.json({ status: "OK", timestamp: new Date().toISOString() });
+    });
 
     // Catch-all for undefined routes
     app.use((req, res) => {
@@ -79,7 +90,7 @@ const startServer = async () => {
     });
 
     const instanceId = parseInt(process.env.NODE_APP_INSTANCE || 0, 10);
-    const basePort = Number(process.env.PORT);
+    const basePort = Number(process.env.PORT || 5000);
 
     const PORT = basePort + instanceId;
 
