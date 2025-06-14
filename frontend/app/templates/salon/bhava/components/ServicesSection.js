@@ -49,7 +49,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-orange-50">
+    <section id="services" className="py-20 bg-[var(--bhava-background-light)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fadeIn">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -69,14 +69,14 @@ export default function ServicesSection() {
                 key={index}
                 className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
-                <div className="w-16 h-16 bg-yellow-600/10 rounded-lg flex items-center justify-center mb-6">
-                  <IconComponent className="h-8 w-8 text-yellow-600" />
+                <div className="w-16 h-16 bg-[var(--bhava-accent-light)] rounded-lg flex items-center justify-center mb-6">
+                  <IconComponent className="h-8 w-8 text-[var(--bhava-accent)]" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {service.title}
                 </h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
-                <div className="text-yellow-600 font-semibold">
+                <div className="text-[var(--bhava-accent)] font-semibold">
                   {service.price}
                 </div>
               </div>

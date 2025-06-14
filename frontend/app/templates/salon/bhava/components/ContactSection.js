@@ -4,7 +4,7 @@ import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 
 export default function ContactSection({ business }) {
   return (
-    <section id="contact" className="py-20 bg-gray-900 text-white">
+    <section id="contact" className="py-20 bg-[var(--bhava-dark)] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fadeIn">
@@ -17,8 +17,8 @@ export default function ContactSection({ business }) {
 
             <div className="space-y-6">
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-yellow-600/20 rounded-lg flex items-center justify-center mr-4">
-                  <MapPin className="h-6 w-6 text-yellow-600" />
+                <div className="w-12 h-12 bg-[var(--bhava-accent-light)] rounded-lg flex items-center justify-center mr-4">
+                  <MapPin className="h-6 w-6 text-[var(--bhava-accent)]" />
                 </div>
                 <div>
                   <div className="font-semibold">Visit Our Salon</div>
@@ -29,8 +29,8 @@ export default function ContactSection({ business }) {
               </div>
 
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-yellow-600/20 rounded-lg flex items-center justify-center mr-4">
-                  <Phone className="h-6 w-6 text-yellow-600" />
+                <div className="w-12 h-12 bg-[var(--bhava-accent-light)] rounded-lg flex items-center justify-center mr-4">
+                  <Phone className="h-6 w-6 text-[var(--bhava-accent)]" />
                 </div>
                 <div>
                   <div className="font-semibold">Call Us</div>
@@ -39,8 +39,8 @@ export default function ContactSection({ business }) {
               </div>
 
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-yellow-600/20 rounded-lg flex items-center justify-center mr-4">
-                  <Clock className="h-6 w-6 text-yellow-600" />
+                <div className="w-12 h-12 bg-[var(--bhava-accent-light)] rounded-lg flex items-center justify-center mr-4">
+                  <Clock className="h-6 w-6 text-[var(--bhava-accent)]" />
                 </div>
                 <div>
                   <div className="font-semibold">Opening Hours</div>
@@ -59,7 +59,7 @@ export default function ContactSection({ business }) {
                 )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment%20at%20${
                   business.name
                 }`}
-                className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center bg-[var(--bhava-success)] hover:bg-[var(--bhava-success-hover)] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 <MessageCircle className="h-6 w-6 mr-3" />
                 Book via WhatsApp

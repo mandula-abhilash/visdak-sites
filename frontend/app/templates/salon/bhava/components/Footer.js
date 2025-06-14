@@ -4,12 +4,12 @@ import { Scissors, Facebook, Instagram, Twitter } from "lucide-react";
 
 export default function Footer({ business }) {
   return (
-    <footer className="bg-gray-900 text-white py-12 border-t border-gray-800">
+    <footer className="bg-[var(--bhava-dark)] text-white py-12 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="col-span-2">
             <div className="flex items-center mb-4">
-              <Scissors className="h-8 w-8 text-yellow-600 mr-2" />
+              <Scissors className="h-8 w-8 text-[var(--bhava-accent)] mr-2" />
               <span className="text-2xl font-bold">{business.name}</span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
@@ -18,21 +18,21 @@ export default function Footer({ business }) {
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-yellow-600/20 rounded-lg flex items-center justify-center hover:bg-yellow-600/30 transition-colors"
+                className="w-10 h-10 bg-[var(--bhava-accent-light)] rounded-lg flex items-center justify-center hover:bg-[var(--bhava-accent-hover)] transition-colors"
               >
-                <Facebook className="h-5 w-5 text-yellow-600" />
+                <Facebook className="h-5 w-5 text-[var(--bhava-accent)]" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-yellow-600/20 rounded-lg flex items-center justify-center hover:bg-yellow-600/30 transition-colors"
+                className="w-10 h-10 bg-[var(--bhava-accent-light)] rounded-lg flex items-center justify-center hover:bg-[var(--bhava-accent-hover)] transition-colors"
               >
-                <Instagram className="h-5 w-5 text-yellow-600" />
+                <Instagram className="h-5 w-5 text-[var(--bhava-accent)]" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-yellow-600/20 rounded-lg flex items-center justify-center hover:bg-yellow-600/30 transition-colors"
+                className="w-10 h-10 bg-[var(--bhava-accent-light)] rounded-lg flex items-center justify-center hover:bg-[var(--bhava-accent-hover)] transition-colors"
               >
-                <Twitter className="h-5 w-5 text-yellow-600" />
+                <Twitter className="h-5 w-5 text-[var(--bhava-accent)]" />
               </a>
             </div>
           </div>
@@ -43,7 +43,7 @@ export default function Footer({ business }) {
               <li>
                 <a
                   href="#home"
-                  className="text-gray-300 hover:text-yellow-600 transition-colors"
+                  className="text-gray-300 hover:text-[var(--bhava-accent)] transition-colors"
                 >
                   Home
                 </a>
@@ -51,7 +51,7 @@ export default function Footer({ business }) {
               <li>
                 <a
                   href="#about"
-                  className="text-gray-300 hover:text-yellow-600 transition-colors"
+                  className="text-gray-300 hover:text-[var(--bhava-accent)] transition-colors"
                 >
                   About Us
                 </a>
@@ -59,7 +59,7 @@ export default function Footer({ business }) {
               <li>
                 <a
                   href="#services"
-                  className="text-gray-300 hover:text-yellow-600 transition-colors"
+                  className="text-gray-300 hover:text-[var(--bhava-accent)] transition-colors"
                 >
                   Services
                 </a>
@@ -67,7 +67,7 @@ export default function Footer({ business }) {
               <li>
                 <a
                   href="#gallery"
-                  className="text-gray-300 hover:text-yellow-600 transition-colors"
+                  className="text-gray-300 hover:text-[var(--bhava-accent)] transition-colors"
                 >
                   Gallery
                 </a>
@@ -75,7 +75,7 @@ export default function Footer({ business }) {
               <li>
                 <a
                   href="#contact"
-                  className="text-gray-300 hover:text-yellow-600 transition-colors"
+                  className="text-gray-300 hover:text-[var(--bhava-accent)] transition-colors"
                 >
                   Contact
                 </a>
@@ -108,11 +108,17 @@ export default function Footer({ business }) {
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-300">
             &copy; 2024 {business.name}. All rights reserved. |
-            <a href="#" className="text-yellow-600 hover:underline ml-1">
+            <a
+              href="#"
+              className="text-[var(--bhava-accent)] hover:underline ml-1"
+            >
               Privacy Policy
             </a>{" "}
             |
-            <a href="#" className="text-yellow-600 hover:underline ml-1">
+            <a
+              href="#"
+              className="text-[var(--bhava-accent)] hover:underline ml-1"
+            >
               Terms of Service
             </a>
           </p>

@@ -33,6 +33,36 @@ export default function Bhava({ business }) {
     return () => observer.disconnect();
   }, []);
 
+  // Set CSS custom properties for theme colors
+  useEffect(() => {
+    const root = document.documentElement;
+
+    // Default Bhava theme colors (golden/yellow theme)
+    const themeColors = {
+      "--bhava-primary": "#B7935B",
+      "--bhava-secondary": "#8E793E",
+      "--bhava-accent": "#D4AF37",
+      "--bhava-accent-light": "#F4E4BC",
+      "--bhava-accent-hover": "#B8941F",
+      "--bhava-dark": "#1F2937",
+      "--bhava-background-light": "#FEF7E0",
+      "--bhava-success": "#10B981",
+      "--bhava-success-hover": "#059669",
+    };
+
+    // Apply theme colors to CSS custom properties
+    Object.entries(themeColors).forEach(([property, value]) => {
+      root.style.setProperty(property, value);
+    });
+
+    // Cleanup function to remove custom properties
+    return () => {
+      Object.keys(themeColors).forEach((property) => {
+        root.style.removeProperty(property);
+      });
+    };
+  }, []);
+
   return (
     <div className="font-sans antialiased overflow-x-hidden">
       <Navigation business={business} />

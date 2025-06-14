@@ -4,7 +4,7 @@ export default function HeroSection({ business }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-white pt-20 mt-16 lg:mt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--bhava-background-light)] to-white pt-20 mt-16 lg:mt-20 overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute right-0 top-0 w-full lg:w-1/2 h-full">
@@ -24,7 +24,7 @@ export default function HeroSection({ business }) {
           <div className="relative z-10 lg:bg-white/95 lg:backdrop-blur-sm lg:p-8 lg:rounded-xl lg:shadow-2xl">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white lg:text-gray-900 mb-6 leading-tight">
               Redefine Your
-              <span className="text-yellow-400 lg:text-yellow-600 block">
+              <span className="text-[var(--bhava-accent-light)] lg:text-[var(--bhava-accent)] block">
                 Beauty
               </span>
             </h1>
@@ -35,7 +35,7 @@ export default function HeroSection({ business }) {
             <div className="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center">
               <a
                 href="#services"
-                className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
+                className="bg-[var(--bhava-accent)] hover:bg-[var(--bhava-accent-hover)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
               >
                 Explore Services
               </a>
@@ -44,7 +44,7 @@ export default function HeroSection({ business }) {
                   /\D/g,
                   ""
                 )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
-                className="border-2 border-yellow-400 lg:border-yellow-600 text-yellow-400 lg:text-yellow-600 hover:bg-yellow-400 lg:hover:bg-yellow-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 text-center"
+                className="border-2 border-[var(--bhava-accent-light)] lg:border-[var(--bhava-accent)] text-[var(--bhava-accent-light)] lg:text-[var(--bhava-accent)] hover:bg-[var(--bhava-accent-light)] lg:hover:bg-[var(--bhava-accent)] hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 text-center"
               >
                 Book Appointment
               </a>

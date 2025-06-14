@@ -79,8 +79,8 @@ export default function Navigation({ business }) {
               onClick={handleLogoClick}
               className="flex items-center flex-shrink-0 min-w-0 group cursor-pointer"
             >
-              <Scissors className="h-6 w-6 lg:h-8 lg:w-8 text-yellow-600 mr-2 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
-              <span className="text-lg lg:text-xl font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-yellow-600">
+              <Scissors className="h-6 w-6 lg:h-8 lg:w-8 text-[var(--bhava-accent)] mr-2 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
+              <span className="text-lg lg:text-xl font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-[var(--bhava-accent)]">
                 {business.name}
               </span>
             </a>
@@ -91,7 +91,7 @@ export default function Navigation({ business }) {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium whitespace-nowrap"
+                  className="text-gray-700 hover:text-[var(--bhava-accent)] transition-colors duration-200 font-medium whitespace-nowrap"
                 >
                   {link.name}
                 </a>
@@ -102,7 +102,7 @@ export default function Navigation({ business }) {
             <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
               <a
                 href={`tel:${business.contact.phone}`}
-                className="flex items-center text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+                className="flex items-center text-gray-700 hover:text-[var(--bhava-accent)] transition-colors duration-200"
               >
                 <Phone className="h-4 w-4 mr-2" />
                 <span className="font-medium">Call Now</span>
@@ -112,7 +112,7 @@ export default function Navigation({ business }) {
                   /\D/g,
                   ""
                 )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
-                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center font-medium"
+                className="bg-[var(--bhava-success)] hover:bg-[var(--bhava-success-hover)] text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center font-medium"
               >
                 <MessageCircle className="h-4 w-4 mr-2" />
                 WhatsApp
@@ -127,7 +127,7 @@ export default function Navigation({ business }) {
                   /\D/g,
                   ""
                 )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
-                className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition-colors duration-200"
+                className="bg-[var(--bhava-success)] hover:bg-[var(--bhava-success-hover)] text-white p-2 rounded-lg transition-colors duration-200"
                 aria-label="WhatsApp"
               >
                 <MessageCircle className="h-5 w-5" />
@@ -135,7 +135,7 @@ export default function Navigation({ business }) {
 
               {/* Hamburger menu */}
               <button
-                className="p-2 rounded-lg text-gray-700 hover:text-yellow-600 hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+                className="p-2 rounded-lg text-gray-700 hover:text-[var(--bhava-accent)] hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--bhava-accent)]"
                 onClick={handleMenuToggle}
                 aria-label="Toggle menu"
                 aria-expanded={isMenuOpen}
@@ -173,8 +173,8 @@ export default function Navigation({ business }) {
                   onClick={handleLogoClick}
                   className="flex items-center group cursor-pointer"
                 >
-                  <Scissors className="h-6 w-6 text-yellow-600 mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
-                  <span className="text-lg font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-yellow-600">
+                  <Scissors className="h-6 w-6 text-[var(--bhava-accent)] mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
+                  <span className="text-lg font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-[var(--bhava-accent)]">
                     {business.name}
                   </span>
                 </a>
@@ -188,7 +188,7 @@ export default function Navigation({ business }) {
                       key={link.name}
                       href={link.href}
                       onClick={handleLinkClick}
-                      className="block px-4 py-3 text-lg font-medium text-gray-700 hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors duration-200"
+                      className="block px-4 py-3 text-lg font-medium text-gray-700 hover:text-[var(--bhava-accent)] hover:bg-[var(--bhava-accent-light)] rounded-lg transition-colors duration-200"
                     >
                       {link.name}
                     </a>
@@ -201,7 +201,7 @@ export default function Navigation({ business }) {
                 <a
                   href={`tel:${business.contact.phone}`}
                   onClick={handleLinkClick}
-                  className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium text-gray-700 hover:text-yellow-600 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                  className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium text-gray-700 hover:text-[var(--bhava-accent)] hover:bg-gray-50 rounded-lg transition-colors duration-200"
                 >
                   <Phone className="h-5 w-5 mr-3 flex-shrink-0" />
                   <span className="truncate">
@@ -215,7 +215,7 @@ export default function Navigation({ business }) {
                     ""
                   )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
                   onClick={handleLinkClick}
-                  className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors duration-200"
+                  className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium bg-[var(--bhava-success)] hover:bg-[var(--bhava-success-hover)] text-white rounded-lg transition-colors duration-200"
                 >
                   <MessageCircle className="h-5 w-5 mr-3 flex-shrink-0" />
                   <span className="truncate">Book via WhatsApp</span>
