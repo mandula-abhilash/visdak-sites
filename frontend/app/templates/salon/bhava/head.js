@@ -8,6 +8,9 @@ export default function Head({ business, pathname }) {
 
   return (
     <>
+      {/* Universal Theme Injection - MUST be first to prevent flicker */}
+      <UniversalThemeHead themeName={business.themeName} />
+
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
@@ -19,9 +22,6 @@ export default function Head({ business, pathname }) {
         href={`https://${business.subdomain}.yourdomain.com`}
       />
       <link rel="icon" href={business.seo.favicon} />
-
-      {/* Universal Theme Injection - Works for ALL templates */}
-      <UniversalThemeHead themeName={business.themeName} />
     </>
   );
 }

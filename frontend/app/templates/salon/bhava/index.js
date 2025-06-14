@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import UniversalThemeProvider from "@/components/UniversalThemeProvider";
 import Navigation from "./components/Navigation";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
@@ -35,17 +34,15 @@ export default function Bhava({ business }) {
   }, []);
 
   return (
-    <UniversalThemeProvider business={business}>
-      <div className="font-sans antialiased overflow-x-hidden">
-        <Navigation business={business} />
-        <HeroSection business={business} />
-        <AboutSection business={business} />
-        <ServicesSection />
-        <GallerySection />
-        <TestimonialsSection />
-        <ContactSection business={business} />
-        <Footer business={business} />
-      </div>
-    </UniversalThemeProvider>
+    <div className="font-sans antialiased overflow-x-hidden">
+      <Navigation business={business} />
+      <HeroSection business={business} />
+      <AboutSection business={business} />
+      <ServicesSection />
+      <GallerySection />
+      <TestimonialsSection />
+      <ContactSection business={business} />
+      <Footer business={business} />
+    </div>
   );
 }
