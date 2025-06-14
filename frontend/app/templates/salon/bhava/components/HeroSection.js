@@ -4,12 +4,12 @@ export default function HeroSection({ business }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-white pt-20 lg:mt-16 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-white pt-20 mt-20 overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute right-0 top-0 w-full lg:w-1/2 h-full">
         <img
-          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1200"
+          src="https://images.unsplash.com/photo-1706629504952-ab5e50f5c179?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Professional salon interior with modern styling chairs"
           className="w-full h-full object-cover"
         />
