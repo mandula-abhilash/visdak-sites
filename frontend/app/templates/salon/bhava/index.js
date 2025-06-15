@@ -38,9 +38,9 @@ export default function Bhava({ business }) {
       <Navigation business={business} />
       <HeroSection business={business} />
       <AboutSection business={business} />
-      <ServicesSection />
-      <GallerySection />
-      <TestimonialsSection />
+      <ServicesSection business={business} />
+      <GallerySection business={business} />
+      <TestimonialsSection business={business} />
       <ContactSection business={business} />
       <Footer business={business} />
     </div>

@@ -1,6 +1,8 @@
 "use client";
 
 export default function HeroSection({ business }) {
+  if (!business) return null;
+
   return (
     <section
       id="home"
@@ -8,11 +10,13 @@ export default function HeroSection({ business }) {
     >
       {/* Background Image */}
       <div className="absolute right-0 top-0 w-full lg:w-1/2 h-full">
-        <img
-          src="https://images.unsplash.com/photo-1706629504952-ab5e50f5c179?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Professional salon interior with modern styling chairs"
-          className="w-full h-full object-cover"
-        />
+        {business.heroImage && (
+          <img
+            src={business.heroImage}
+            alt={`${business.name} hero image`}
+            className="w-full h-full object-cover"
+          />
+        )}
       </div>
 
       {/* Content */}
@@ -26,17 +30,18 @@ export default function HeroSection({ business }) {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white lg:text-gray-900 mb-6 leading-tight"
               style={{ fontFamily: "var(--template-font-heading)" }}
             >
-              Redefine Your
-              <span className="text-[var(--template-accent-light)] lg:text-[var(--template-accent)] block">
-                Beauty
-              </span>
+              {business.heroTitle || business.name}
+              {business.heroAccent && (
+                <span className="text-[var(--template-accent-light)] lg:text-[var(--template-accent)] block">
+                  {business.heroAccent}
+                </span>
+              )}
             </h1>
             <p
               className="text-lg md:text-xl lg:text-2xl text-gray-100 lg:text-gray-600 mb-8 leading-relaxed"
               style={{ fontFamily: "var(--template-font-body)" }}
             >
-              Experience premium unisex salon services where style meets
-              sophistication. Professional treatments for both men and women.
+              {business.heroSubtitle || business.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center">
               <a
@@ -44,18 +49,20 @@ export default function HeroSection({ business }) {
                 className="bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
                 style={{ fontFamily: "var(--template-font-body)" }}
               >
-                Explore Services
+                {business.heroPrimaryButton || "Explore Services"}
               </a>
-              <a
-                href={`https://wa.me/${business.contact.phone.replace(
-                  /\D/g,
-                  ""
-                )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
-                className="border-2 border-[var(--template-accent-light)] lg:border-[var(--template-accent)] text-[var(--template-accent-light)] lg:text-[var(--template-accent)] hover:bg-[var(--template-accent-light)] lg:hover:bg-[var(--template-accent)] hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 text-center"
-                style={{ fontFamily: "var(--template-font-body)" }}
-              >
-                Book Appointment
-              </a>
+              {business.contact?.phone && (
+                <a
+                  href={`https://wa.me/${business.contact.phone.replace(
+                    /\D/g,
+                    ""
+                  )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
+                  className="border-2 border-[var(--template-accent-light)] lg:border-[var(--template-accent)] text-[var(--template-accent-light)] lg:text-[var(--template-accent)] hover:bg-[var(--template-accent-light)] lg:hover:bg-[var(--template-accent)] hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 text-center"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  {business.heroSecondaryButton || "Book Appointment"}
+                </a>
+              )}
             </div>
           </div>
         </div>

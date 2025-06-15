@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 const router = express.Router();
 
-// Mock data for Be On Mirrors business
+// Mock data for Be On Mirrors business - completely dynamic
 const beOnMirrorsData = {
   id: "be-on-mirrors",
   name: "Be On Mirrors",
@@ -14,8 +14,39 @@ const beOnMirrorsData = {
   themeName: "rose",
   fontName: "modern",
   description:
-    "Premier unisex salon offering professional beauty and grooming services in a luxurious environment. Your style, our passion.",
+    "Premium Unisex Salon Services - Professional hair styling, coloring, treatments, and beauty services for men and women. Book your appointment today!",
   logo: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
+
+  // Hero Section Data
+  heroTitle: "Redefine Your",
+  heroAccent: "Beauty",
+  heroSubtitle:
+    "Experience premium unisex salon services where style meets sophistication. Professional treatments for both men and women.",
+  heroImage:
+    "https://images.unsplash.com/photo-1706629504952-ab5e50f5c179?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  heroPrimaryButton: "Explore Services",
+  heroSecondaryButton: "Book Appointment",
+
+  // About Section Data
+  about: {
+    story:
+      "With over 15 years of excellence in the beauty industry, we have been the premier destination for sophisticated hair styling and beauty treatments. Our unisex approach ensures that both men and women receive world-class services in a luxurious, welcoming environment. Our team of certified professionals specializes in cutting-edge techniques, from precision cuts and creative coloring to advanced hair treatments and styling. We believe that every client deserves to look and feel their absolute best.",
+  },
+  aboutImage:
+    "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800",
+  stats: [
+    { value: "15+", label: "Years Experience" },
+    { value: "5000+", label: "Happy Clients" },
+  ],
+  award: {
+    title: "Award Winning",
+    subtitle: "Salon Services",
+  },
+
+  // Contact Section Data
+  contactImage:
+    "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800",
+
   seo: {
     title:
       "Be On Mirrors - The Unisex Salon | Hair Styling & Beauty Treatments",
@@ -53,6 +84,13 @@ const beOnMirrorsData = {
     email: "info@beonmirrors.com",
     address:
       "lane, opposite Ameenpur police station, Madhura Nagar Colony, Beeramguda, Hyderabad, Telangana 502032",
+    description:
+      "Ready to transform your look? Contact us today to schedule your appointment and experience the luxury of our premium salon services.",
+    social: {
+      facebook: "https://facebook.com/beonmirrors",
+      instagram: "https://instagram.com/beonmirrors",
+      twitter: "https://twitter.com/beonmirrors",
+    },
   },
   services: [
     {
@@ -103,16 +141,28 @@ const beOnMirrorsData = {
       id: 1,
       name: "Sarah Johnson",
       text: "Absolutely amazing experience! The stylist understood exactly what I wanted and delivered beyond my expectations. The salon atmosphere is so relaxing and professional.",
+      rating: 5,
+      image:
+        "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      role: "Regular Client",
     },
     {
       id: 2,
       name: "Michael Chen",
       text: "Best salon experience I've ever had! The team is incredibly talented and the results speak for themselves. I always leave feeling confident and stylish.",
+      rating: 5,
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
+      role: "Business Professional",
     },
     {
       id: 3,
       name: "Emma Rodriguez",
       text: "From the moment I walked in, I felt welcomed and valued. The attention to detail and level of service is unmatched. Highly recommend to everyone!",
+      rating: 5,
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
+      role: "Fashion Designer",
     },
   ],
   gallery: [
@@ -156,6 +206,10 @@ const beOnMirrorsData = {
     sat: "9:00 AM - 8:00 PM",
     sun: "10:00 AM - 6:00 PM",
   },
+  footerLinks: [
+    { text: "Privacy Policy", href: "#" },
+    { text: "Terms of Service", href: "#" },
+  ],
   isActive: true,
 };
 

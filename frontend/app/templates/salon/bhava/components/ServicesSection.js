@@ -2,51 +2,24 @@
 
 import { Scissors, Palette, Sparkles, User, Zap, Heart } from "lucide-react";
 
-export default function ServicesSection() {
-  const services = [
-    {
-      icon: Scissors,
-      title: "Hair Cutting & Styling",
-      description:
-        "Professional precision cuts, modern styling, and creative designs tailored to your personality and lifestyle.",
-      price: "Starting from $45",
-    },
-    {
-      icon: Palette,
-      title: "Hair Coloring",
-      description:
-        "Expert color treatments including highlights, balayage, ombre, and fashion colors using premium products.",
-      price: "Starting from $85",
-    },
-    {
-      icon: Sparkles,
-      title: "Hair Treatments",
-      description:
-        "Nourishing treatments including keratin, deep conditioning, and scalp therapies for healthy hair.",
-      price: "Starting from $65",
-    },
-    {
-      icon: User,
-      title: "Men's Grooming",
-      description:
-        "Complete grooming services including beard trimming, styling, and traditional barbering techniques.",
-      price: "Starting from $35",
-    },
-    {
-      icon: Zap,
-      title: "Hair Styling",
-      description:
-        "Special occasion styling, updos, blowouts, and creative styling for events and photoshoots.",
-      price: "Starting from $55",
-    },
-    {
-      icon: Heart,
-      title: "Beauty Treatments",
-      description:
-        "Facial treatments, eyebrow shaping, and other beauty services to complete your look.",
-      price: "Starting from $40",
-    },
-  ];
+export default function ServicesSection({ business }) {
+  console.log(business);
+
+  if (!business || !business.services || business.services.length === 0) {
+    return null;
+  }
+
+  // Map service names to icons
+  const getServiceIcon = (serviceName) => {
+    const name = serviceName.toLowerCase();
+    if (name.includes("cut") || name.includes("styling")) return Scissors;
+    if (name.includes("color")) return Palette;
+    if (name.includes("treatment")) return Sparkles;
+    if (name.includes("men") || name.includes("groom")) return User;
+    if (name.includes("style")) return Zap;
+    if (name.includes("beauty") || name.includes("facial")) return Heart;
+    return Scissors; // default icon
+  };
 
   return (
     <section
@@ -66,16 +39,16 @@ export default function ServicesSection() {
             style={{ fontFamily: "var(--template-font-body)" }}
           >
             Discover our comprehensive range of professional beauty and grooming
-            services designed for both men and women
+            services
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const IconComponent = service.icon;
+          {business.services.map((service, index) => {
+            const IconComponent = getServiceIcon(service.name);
             return (
               <div
-                key={index}
+                key={service.id || index}
                 className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="w-16 h-16 bg-[var(--template-accent-light)] rounded-lg flex items-center justify-center mb-6">
@@ -85,7 +58,7 @@ export default function ServicesSection() {
                   className="text-xl font-bold text-gray-900 mb-4"
                   style={{ fontFamily: "var(--template-font-heading)" }}
                 >
-                  {service.title}
+                  {service.name}
                 </h3>
                 <p
                   className="text-gray-600 mb-4"
