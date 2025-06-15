@@ -3,8 +3,6 @@
 import { Scissors, Palette, Sparkles, User, Zap, Heart } from "lucide-react";
 
 export default function ServicesSection({ business }) {
-  console.log(business);
-
   if (!business || !business.services || business.services.length === 0) {
     return null;
   }

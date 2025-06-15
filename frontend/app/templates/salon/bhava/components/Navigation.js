@@ -7,6 +7,9 @@ export default function Navigation({ business }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Return null if no business data
+  if (!business) return null;
+
   // Handle scroll effect - this is acceptable as it's a window event
   useEffect(() => {
     const handleScroll = () => {
@@ -30,13 +33,39 @@ export default function Navigation({ business }) {
     };
   }, [isMenuOpen]);
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Contact", href: "#contact" },
-  ];
+  // Dynamic navigation links based on available sections
+  const getNavLinks = () => {
+    const links = [{ name: "Home", href: "#home" }];
+
+    // Add About link if about data exists
+    if (business.about || business.description) {
+      links.push({ name: "About", href: "#about" });
+    }
+
+    // Add Services link if services exist
+    if (business.services && business.services.length > 0) {
+      links.push({ name: "Services", href: "#services" });
+    }
+
+    // Add Gallery link if gallery exists
+    if (business.gallery && business.gallery.length > 0) {
+      links.push({ name: "Gallery", href: "#gallery" });
+    }
+
+    // Add Testimonials link if testimonials exist
+    if (business.testimonials && business.testimonials.length > 0) {
+      links.push({ name: "Testimonials", href: "#testimonials" });
+    }
+
+    // Always add Contact if contact info exists
+    if (business.contact) {
+      links.push({ name: "Contact", href: "#contact" });
+    }
+
+    return links;
+  };
+
+  const navLinks = getNavLinks();
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
@@ -79,7 +108,15 @@ export default function Navigation({ business }) {
               onClick={handleLogoClick}
               className="flex items-center flex-shrink-0 min-w-0 group cursor-pointer"
             >
-              <Scissors className="h-6 w-6 lg:h-8 lg:w-8 text-[var(--template-accent)] mr-2 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
+              {business.logo ? (
+                <img
+                  src={business.logo}
+                  alt={business.name}
+                  className="h-6 w-6 lg:h-8 lg:w-8 mr-2 flex-shrink-0 transition-transform duration-200 group-hover:scale-110 rounded"
+                />
+              ) : (
+                <Scissors className="h-6 w-6 lg:h-8 lg:w-8 text-[var(--template-accent)] mr-2 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
+              )}
               <span
                 className="text-lg lg:text-xl font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-[var(--template-accent)]"
                 style={{ fontFamily: "var(--template-font-heading)" }}
@@ -104,40 +141,46 @@ export default function Navigation({ business }) {
 
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
-              <a
-                href={`tel:${business.contact.phone}`}
-                className="flex items-center text-gray-700 hover:text-[var(--template-accent)] transition-colors duration-200"
-                style={{ fontFamily: "var(--template-font-body)" }}
-              >
-                <Phone className="h-4 w-4 mr-2" />
-                <span className="font-medium">Call Now</span>
-              </a>
-              <a
-                href={`https://wa.me/${business.contact.phone.replace(
-                  /\D/g,
-                  ""
-                )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
-                className="bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center font-medium"
-                style={{ fontFamily: "var(--template-font-body)" }}
-              >
-                <MessageCircle className="h-4 w-4 mr-2" />
-                WhatsApp
-              </a>
+              {business.contact?.phone && (
+                <a
+                  href={`tel:${business.contact.phone}`}
+                  className="flex items-center text-gray-700 hover:text-[var(--template-accent)] transition-colors duration-200"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  <Phone className="h-4 w-4 mr-2" />
+                  <span className="font-medium">Call Now</span>
+                </a>
+              )}
+              {business.contact?.phone && (
+                <a
+                  href={`https://wa.me/${business.contact.phone.replace(
+                    /\D/g,
+                    ""
+                  )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
+                  className="bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center font-medium"
+                  style={{ fontFamily: "var(--template-font-body)" }}
+                >
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  WhatsApp
+                </a>
+              )}
             </div>
 
             {/* Mobile menu button */}
             <div className="lg:hidden flex items-center space-x-2 flex-shrink-0">
               {/* Mobile WhatsApp button */}
-              <a
-                href={`https://wa.me/${business.contact.phone.replace(
-                  /\D/g,
-                  ""
-                )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
-                className="bg-[var(--template-success)] hover:bg-[var(--template-success-hover)] text-white p-2 rounded-lg transition-colors duration-200"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
+              {business.contact?.phone && (
+                <a
+                  href={`https://wa.me/${business.contact.phone.replace(
+                    /\D/g,
+                    ""
+                  )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
+                  className="bg-[var(--template-success)] hover:bg-[var(--template-success-hover)] text-white p-2 rounded-lg transition-colors duration-200"
+                  aria-label="WhatsApp"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                </a>
+              )}
 
               {/* Hamburger menu */}
               <button
@@ -179,7 +222,15 @@ export default function Navigation({ business }) {
                   onClick={handleLogoClick}
                   className="flex items-center group cursor-pointer"
                 >
-                  <Scissors className="h-6 w-6 text-[var(--template-accent)] mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
+                  {business.logo ? (
+                    <img
+                      src={business.logo}
+                      alt={business.name}
+                      className="h-6 w-6 mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110 rounded"
+                    />
+                  ) : (
+                    <Scissors className="h-6 w-6 text-[var(--template-accent)] mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
+                  )}
                   <span
                     className="text-lg font-bold text-gray-900 truncate transition-colors duration-200 group-hover:text-[var(--template-accent)]"
                     style={{ fontFamily: "var(--template-font-heading)" }}
@@ -207,32 +258,34 @@ export default function Navigation({ business }) {
               </div>
 
               {/* Mobile CTA Section */}
-              <div className="px-6 py-6 border-t border-gray-200 space-y-4">
-                <a
-                  href={`tel:${business.contact.phone}`}
-                  onClick={handleLinkClick}
-                  className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium text-gray-700 hover:text-[var(--template-accent)] hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                  style={{ fontFamily: "var(--template-font-body)" }}
-                >
-                  <Phone className="h-5 w-5 mr-3 flex-shrink-0" />
-                  <span className="truncate">
-                    Call {business.contact.phone}
-                  </span>
-                </a>
+              {business.contact?.phone && (
+                <div className="px-6 py-6 border-t border-gray-200 space-y-4">
+                  <a
+                    href={`tel:${business.contact.phone}`}
+                    onClick={handleLinkClick}
+                    className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium text-gray-700 hover:text-[var(--template-accent)] hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                    style={{ fontFamily: "var(--template-font-body)" }}
+                  >
+                    <Phone className="h-5 w-5 mr-3 flex-shrink-0" />
+                    <span className="truncate">
+                      Call {business.contact.phone}
+                    </span>
+                  </a>
 
-                <a
-                  href={`https://wa.me/${business.contact.phone.replace(
-                    /\D/g,
-                    ""
-                  )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
-                  onClick={handleLinkClick}
-                  className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white rounded-lg transition-colors duration-200"
-                  style={{ fontFamily: "var(--template-font-body)" }}
-                >
-                  <MessageCircle className="h-5 w-5 mr-3 flex-shrink-0" />
-                  <span className="truncate">Book via WhatsApp</span>
-                </a>
-              </div>
+                  <a
+                    href={`https://wa.me/${business.contact.phone.replace(
+                      /\D/g,
+                      ""
+                    )}?text=Hi!%20I'd%20like%20to%20book%20an%20appointment`}
+                    onClick={handleLinkClick}
+                    className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium bg-[var(--template-accent)] hover:bg-[var(--template-accent-hover)] text-white rounded-lg transition-colors duration-200"
+                    style={{ fontFamily: "var(--template-font-body)" }}
+                  >
+                    <MessageCircle className="h-5 w-5 mr-3 flex-shrink-0" />
+                    <span className="truncate">Book via WhatsApp</span>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
